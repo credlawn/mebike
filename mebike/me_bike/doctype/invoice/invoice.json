@@ -1,0 +1,286 @@
+{
+ "actions": [],
+ "creation": "2025-03-22 12:15:14.455557",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "invoice_type",
+  "status",
+  "column_break_szrv",
+  "transport",
+  "partner_code",
+  "column_break_bixw",
+  "vehicle_no",
+  "invoice_details_section",
+  "invoice_date",
+  "column_break_gpcs",
+  "invoice_no",
+  "column_break_plyl",
+  "partner_name",
+  "section_break_zloy",
+  "items",
+  "section_break_olzq",
+  "billed_quantity",
+  "grand_total_amount",
+  "total_weight",
+  "column_break_ihcw",
+  "invoice_amount",
+  "rounded_total_amount",
+  "column_break_cnkr",
+  "total_gst_amount",
+  "igst_amount",
+  "sgst_amount",
+  "cgst_amount",
+  "billing_details_section",
+  "party_name",
+  "billed_to_address",
+  "column_break_fkax",
+  "gst_no",
+  "shipped_to_address",
+  "column_break_cpsi",
+  "state",
+  "state_code"
+ ],
+ "fields": [
+  {
+   "fieldname": "invoice_type",
+   "fieldtype": "Select",
+   "label": "Invoice Type",
+   "options": "\nSales Invoice\nPurchase Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "invoice_details_section",
+   "fieldtype": "Section Break",
+   "label": "Invoice Details"
+  },
+  {
+   "default": "Today",
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "billed_quantity",
+   "fieldtype": "Int",
+   "label": "Billed Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_gpcs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "invoice_no",
+   "fieldtype": "Data",
+   "label": "Invoice No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "invoice_amount",
+   "fieldtype": "Currency",
+   "label": "Invoice Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_plyl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "label": "Partner Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rounded_total_amount",
+   "fieldtype": "Currency",
+   "label": "Rounded Total Amount",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "billing_details_section",
+   "fieldtype": "Section Break",
+   "label": "Billing Details"
+  },
+  {
+   "fieldname": "party_name",
+   "fieldtype": "Data",
+   "label": "Party Name"
+  },
+  {
+   "fieldname": "column_break_fkax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_cpsi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "state_code",
+   "fieldtype": "Data",
+   "label": "State Code"
+  },
+  {
+   "fieldname": "billed_to_address",
+   "fieldtype": "Small Text",
+   "label": "Billed To Address"
+  },
+  {
+   "fieldname": "shipped_to_address",
+   "fieldtype": "Small Text",
+   "label": "Shipped To Address"
+  },
+  {
+   "default": "By Road",
+   "fieldname": "transport",
+   "fieldtype": "Data",
+   "label": "Transport",
+   "read_only": 1
+  },
+  {
+   "default": "DL01CN0876",
+   "fieldname": "vehicle_no",
+   "fieldtype": "Data",
+   "label": "Vehicle No",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.igst_amount > 0",
+   "fieldname": "igst_amount",
+   "fieldtype": "Currency",
+   "label": "IGST Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.sgst_amount > 0",
+   "fieldname": "sgst_amount",
+   "fieldtype": "Currency",
+   "label": "SGST Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.cgst_amount > 0",
+   "fieldname": "cgst_amount",
+   "fieldtype": "Currency",
+   "label": "CGST Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_szrv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Partner Code",
+   "options": "Partner",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_bixw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grand_total_amount",
+   "fieldtype": "Currency",
+   "label": "Grand Total Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gst_no",
+   "fieldtype": "Data",
+   "label": "GSITN / UIN"
+  },
+  {
+   "fieldname": "total_gst_amount",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Total GST Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "section_break_zloy",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
+  {
+   "columns": 8,
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "options": "Items",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_olzq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "label": "Total Weight (In KG)",
+   "precision": "1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ihcw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_cnkr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Not Paid",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Status",
+   "options": "\nNot Paid\nPartial Paid\nPaid",
+   "read_only": 1
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-06 01:40:26.959745",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Invoice",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

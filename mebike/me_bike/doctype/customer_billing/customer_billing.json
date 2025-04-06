@@ -1,0 +1,175 @@
+{
+ "actions": [],
+ "creation": "2025-03-25 12:10:21.336985",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "invoice_details_section",
+  "invoice_date",
+  "column_break_bfjm",
+  "invoice_no",
+  "column_break_ufob",
+  "section_break_tggv",
+  "customer_name",
+  "city",
+  "column_break_huyu",
+  "mobile_no",
+  "pincode",
+  "column_break_tunt",
+  "email",
+  "address",
+  "amended_from",
+  "section_break_syew",
+  "filter_by_category",
+  "column_break_zbiu",
+  "select_item",
+  "column_break_dsnr",
+  "select_quantity",
+  "section_break_pwvo",
+  "item"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date"
+  },
+  {
+   "fieldname": "column_break_bfjm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "invoice_no",
+   "fieldtype": "Data",
+   "label": "Invoice No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ufob",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "invoice_details_section",
+   "fieldtype": "Section Break",
+   "label": "Invoice Details"
+  },
+  {
+   "fieldname": "section_break_tggv",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "column_break_huyu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "column_break_tunt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Customer Billing",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_pwvo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Table",
+   "label": "Item",
+   "options": "Items"
+  },
+  {
+   "fieldname": "section_break_syew",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "filter_by_category",
+   "fieldtype": "Data",
+   "label": "Filter by Category"
+  },
+  {
+   "fieldname": "column_break_zbiu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "select_item",
+   "fieldtype": "Link",
+   "label": "Select Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_dsnr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "select_quantity",
+   "fieldtype": "Int",
+   "label": "Select Quantity"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-03-28 12:45:37.266134",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Customer Billing",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "creation": "2025-03-07 00:28:43.039124",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "warehouse_details_section",
+  "warehouse_code",
+  "warehouse_city",
+  "partner_code",
+  "column_break_rcep",
+  "warehouse_name",
+  "contact_person",
+  "partner_name",
+  "column_break_tkmn",
+  "warehouse_type",
+  "mobile_no",
+  "item_wise_inventory_section",
+  "warehouse_items",
+  "section_break_onsm",
+  "total_stock_quantity",
+  "column_break_kjyi",
+  "total_stock_amount",
+  "column_break_uxll"
+ ],
+ "fields": [
+  {
+   "fieldname": "warehouse_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Warehouse Name"
+  },
+  {
+   "fieldname": "column_break_rcep",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warehouse_type",
+   "fieldtype": "Select",
+   "label": "Warehouse Type",
+   "options": "\nCompany\nPartner"
+  },
+  {
+   "fieldname": "column_break_tkmn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warehouse_city",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Warehouse City"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "warehouse_details_section",
+   "fieldtype": "Section Break",
+   "label": "Warehouse Details"
+  },
+  {
+   "fieldname": "warehouse_code",
+   "fieldtype": "Data",
+   "label": "Warehouse Code"
+  },
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Link",
+   "label": "Partner Code",
+   "options": "Partner"
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "label": "Partner Name"
+  },
+  {
+   "fieldname": "item_wise_inventory_section",
+   "fieldtype": "Section Break",
+   "label": "Item Wise Inventory"
+  },
+  {
+   "fieldname": "section_break_onsm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_stock_quantity",
+   "fieldtype": "Int",
+   "label": "Total Stock Quantity",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_kjyi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_stock_amount",
+   "fieldtype": "Currency",
+   "label": "Total Stock Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_uxll",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warehouse_items",
+   "fieldtype": "Table",
+   "options": "Warehouse Items",
+   "read_only": 1
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-25 16:05:52.982064",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Warehouse",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

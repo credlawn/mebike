@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "creation": "2025-03-24 23:50:21.034031",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "partner_books_summary_section",
+  "partner_code",
+  "current_balance",
+  "column_break_iqhu",
+  "partner_name",
+  "available_credit_limit",
+  "column_break_uzaq",
+  "total_credit_limit",
+  "section_break_zeel",
+  "transaction_history"
+ ],
+ "fields": [
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Link",
+   "label": "Partner Code",
+   "options": "Partner",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_iqhu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "label": "Partner Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_uzaq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_credit_limit",
+   "fieldtype": "Currency",
+   "label": "Total Credit Limit",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "current_balance",
+   "fieldtype": "Currency",
+   "label": "Current Balance",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "available_credit_limit",
+   "fieldtype": "Currency",
+   "label": "Available Credit Limit",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_books_summary_section",
+   "fieldtype": "Section Break",
+   "label": "Partner Books Summary"
+  },
+  {
+   "fieldname": "section_break_zeel",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "transaction_history",
+   "fieldtype": "Table",
+   "label": "Transaction History",
+   "options": "Partnerbookschild",
+   "read_only": 1
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-25 02:24:24.244433",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Partner Books",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

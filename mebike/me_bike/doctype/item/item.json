@@ -1,0 +1,269 @@
+{
+ "actions": [],
+ "creation": "2025-03-07 01:35:21.557251",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "item_stock_section",
+  "item_current_stock",
+  "column_break_jxlw",
+  "minimum_quantity",
+  "column_break_djxn",
+  "maximum_quantity",
+  "column_break_jslz",
+  "status",
+  "item_details_section",
+  "model",
+  "hsn_code",
+  "item_weight",
+  "column_break_awtm",
+  "item_color",
+  "item_mrp",
+  "column_break_ndcz",
+  "item_category",
+  "tbi_gst_slab",
+  "column_break_ppfv",
+  "item_name",
+  "partner_discount",
+  "item_price_section",
+  "tbi_price_before_gst",
+  "partner_price_before_gst",
+  "column_break_ftxh",
+  "tbi_gst",
+  "partner_gst",
+  "column_break_nitg",
+  "tbi_price_with_gst",
+  "partner_price_with_gst",
+  "column_break_xqoa",
+  "tbi_margin",
+  "partner_margin"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break_awtm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ndcz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ppfv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_color",
+   "fieldtype": "Autocomplete",
+   "in_list_view": 1,
+   "label": "Item Color"
+  },
+  {
+   "fieldname": "item_category",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Item Category ",
+   "options": "\nVehicle\nBattery\nMotor\nAccessories"
+  },
+  {
+   "fieldname": "item_details_section",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
+  {
+   "fieldname": "item_price_section",
+   "fieldtype": "Section Break",
+   "label": "Item Price"
+  },
+  {
+   "fieldname": "tbi_price_before_gst",
+   "fieldtype": "Currency",
+   "label": "TBI Price Exc GST",
+   "permlevel": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_nitg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_xqoa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tbi_price_with_gst",
+   "fieldtype": "Currency",
+   "label": "TBI Price Inc GST",
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ftxh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tbi_gst",
+   "fieldtype": "Currency",
+   "label": "TBI GST",
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tbi_gst_slab",
+   "fieldtype": "Percent",
+   "label": "GST Slab",
+   "permlevel": 1,
+   "precision": "1"
+  },
+  {
+   "fieldname": "partner_price_before_gst",
+   "fieldtype": "Currency",
+   "label": "Partner Price Before GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_gst",
+   "fieldtype": "Currency",
+   "label": "Partner GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_price_with_gst",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Partner Price with GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "partner_margin",
+   "fieldtype": "Currency",
+   "label": "Partner Margin",
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "tbi_margin",
+   "fieldtype": "Currency",
+   "label": "TBI Margin",
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_mrp",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Item MRP",
+   "precision": "2"
+  },
+  {
+   "fieldname": "partner_discount",
+   "fieldtype": "Percent",
+   "label": "Partner Discount",
+   "permlevel": 1,
+   "precision": "1"
+  },
+  {
+   "fieldname": "hsn_code",
+   "fieldtype": "Data",
+   "label": "HSN Code"
+  },
+  {
+   "default": "0",
+   "fieldname": "item_weight",
+   "fieldtype": "Float",
+   "label": "Item Weight",
+   "precision": "2"
+  },
+  {
+   "fieldname": "item_stock_section",
+   "fieldtype": "Section Break",
+   "label": "Item Stock"
+  },
+  {
+   "default": "0",
+   "fieldname": "item_current_stock",
+   "fieldtype": "Int",
+   "label": "Item Current Stock",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_jxlw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_djxn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_jslz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Out of Stock",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nIn Stock\nOut of Stock",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "minimum_quantity",
+   "fieldtype": "Int",
+   "label": "Minimum Quantity"
+  },
+  {
+   "default": "100",
+   "fieldname": "maximum_quantity",
+   "fieldtype": "Int",
+   "label": "Maximum Quantity"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-27 16:49:34.534709",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Item",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "item_name"
+}

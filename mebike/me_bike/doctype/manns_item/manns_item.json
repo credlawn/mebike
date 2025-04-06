@@ -1,0 +1,401 @@
+{
+ "actions": [],
+ "creation": "2025-03-28 15:01:31.545577",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_details_section",
+  "item_code",
+  "column_break_ejfb",
+  "item_name",
+  "column_break_sdnl",
+  "item_category",
+  "column_break_pqut",
+  "battery_details_section",
+  "battery_no",
+  "column_break_gfpc",
+  "column_break_esbm",
+  "column_break_anme",
+  "section_break_muvj",
+  "chassis_no",
+  "column_break_sdot",
+  "motor_no",
+  "column_break_tzwf",
+  "controller_no",
+  "column_break_flvt",
+  "purchase_tab",
+  "manns_purchase_details_section",
+  "manns_purchase_date",
+  "column_break_zzkm",
+  "manns_invoice_no",
+  "column_break_bbgs",
+  "supplier",
+  "column_break_crhf",
+  "customer_purchase_details_section",
+  "customer_purchase_date",
+  "column_break_qyga",
+  "customer_invoice_no",
+  "column_break_jrrh",
+  "column_break_hmlu",
+  "warranty_tab",
+  "manns_war",
+  "mw_motor_months",
+  "mw_motor_status",
+  "mw_motor_start_date",
+  "column_break_jpap",
+  "mw_controller_months",
+  "mw_controller_status",
+  "mw_controller_start_date",
+  "column_break_ptvr",
+  "battery_warranty_months",
+  "mw_battery_status",
+  "mw_battery_start_date",
+  "column_break_upko",
+  "cus_war",
+  "cw_motor_months",
+  "cw_motor_status",
+  "cw_motor_start_date",
+  "column_break_dtpi",
+  "cw_controller_months",
+  "cw_controller_status",
+  "cw_controller_start_date",
+  "column_break_aslj",
+  "cw_battery_months",
+  "cw_battery_status",
+  "cw_battery_start_date",
+  "column_break_kvup"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_ejfb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name"
+  },
+  {
+   "fieldname": "column_break_sdnl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_pqut",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_muvj",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Parts Details"
+  },
+  {
+   "fieldname": "column_break_sdot",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "motor_no",
+   "fieldtype": "Data",
+   "label": "Motor No"
+  },
+  {
+   "fieldname": "column_break_tzwf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_flvt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "battery_no",
+   "fieldtype": "Data",
+   "label": "Battery No"
+  },
+  {
+   "fieldname": "controller_no",
+   "fieldtype": "Data",
+   "label": "Controller No"
+  },
+  {
+   "fieldname": "item_details_section",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
+  {
+   "fieldname": "manns_purchase_date",
+   "fieldtype": "Date",
+   "label": "Manns Purchase Date"
+  },
+  {
+   "fieldname": "manns_invoice_no",
+   "fieldtype": "Data",
+   "label": "Manns Invoice No"
+  },
+  {
+   "fieldname": "item_category",
+   "fieldtype": "Select",
+   "label": "Item Category",
+   "options": "\nVehicle\nBattery\nController\nAccessories"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "chassis_no",
+   "fieldtype": "Data",
+   "label": "Chassis No"
+  },
+  {
+   "fieldname": "manns_purchase_details_section",
+   "fieldtype": "Section Break",
+   "label": "Manns Purchase Details"
+  },
+  {
+   "fieldname": "column_break_zzkm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_bbgs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_crhf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_purchase_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Purchase Details"
+  },
+  {
+   "fieldname": "customer_purchase_date",
+   "fieldtype": "Date",
+   "label": "Customer Purchase Date"
+  },
+  {
+   "fieldname": "column_break_qyga",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_invoice_no",
+   "fieldtype": "Data",
+   "label": "Customer Invoice No"
+  },
+  {
+   "fieldname": "column_break_jrrh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_hmlu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_jpap",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ptvr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "battery_warranty_months",
+   "fieldtype": "Int",
+   "label": "MW Battery Months"
+  },
+  {
+   "fieldname": "column_break_upko",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mw_motor_months",
+   "fieldtype": "Int",
+   "label": "MW Motor Months"
+  },
+  {
+   "fieldname": "mw_controller_months",
+   "fieldtype": "Int",
+   "label": "MW Controller Months"
+  },
+  {
+   "fieldname": "cw_motor_months",
+   "fieldtype": "Int",
+   "label": "CW Motor Months"
+  },
+  {
+   "fieldname": "cw_controller_months",
+   "fieldtype": "Int",
+   "label": "CW Controller Months"
+  },
+  {
+   "fieldname": "cw_battery_months",
+   "fieldtype": "Int",
+   "label": "CW Battery Months"
+  },
+  {
+   "fieldname": "purchase_tab",
+   "fieldtype": "Tab Break",
+   "label": "Purchase"
+  },
+  {
+   "fieldname": "warranty_tab",
+   "fieldtype": "Tab Break",
+   "label": "Warranty"
+  },
+  {
+   "fieldname": "battery_details_section",
+   "fieldtype": "Section Break",
+   "label": "Battery Details"
+  },
+  {
+   "fieldname": "column_break_gfpc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_esbm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_anme",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "manns_war",
+   "fieldtype": "Section Break",
+   "label": "Warranty Months & Status for Manns"
+  },
+  {
+   "fieldname": "cus_war",
+   "fieldtype": "Section Break",
+   "label": "Warranty Months & Status for Customer"
+  },
+  {
+   "fieldname": "column_break_dtpi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_aslj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_kvup",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mw_motor_start_date",
+   "fieldtype": "Date",
+   "label": "MW Motor Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mw_controller_start_date",
+   "fieldtype": "Date",
+   "label": "MW Controller Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mw_battery_start_date",
+   "fieldtype": "Date",
+   "label": "MW Battery Start Date",
+   "read_only": 1
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "mw_motor_status",
+   "fieldtype": "Select",
+   "label": "MW Motor Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "mw_controller_status",
+   "fieldtype": "Select",
+   "label": "MW Controller Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "mw_battery_status",
+   "fieldtype": "Select",
+   "label": "MW Battery Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cw_motor_start_date",
+   "fieldtype": "Date",
+   "label": "CW Motor Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cw_controller_start_date",
+   "fieldtype": "Date",
+   "label": "CW Controller Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cw_battery_start_date",
+   "fieldtype": "Date",
+   "label": "CW Battery Start Date",
+   "read_only": 1
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "cw_motor_status",
+   "fieldtype": "Select",
+   "label": "CW Motor Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "cw_controller_status",
+   "fieldtype": "Select",
+   "label": "CW Controller Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "cw_battery_status",
+   "fieldtype": "Select",
+   "label": "CW Battery Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-28 19:22:22.594411",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Manns Item",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

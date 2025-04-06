@@ -1,0 +1,147 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2025-03-06 20:42:25.458528",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_details_section",
+  "prefix",
+  "mobile_no",
+  "complete_address",
+  "column_break_vuhx",
+  "customer_name",
+  "whatsapp_no",
+  "city",
+  "pin_code",
+  "column_break_vhjd",
+  "date_of_birth",
+  "email",
+  "state",
+  "section_break_aujp",
+  "customer_mapping",
+  "column_break_nzgl",
+  "column_break_evuf"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "prefix",
+   "fieldtype": "Select",
+   "label": "Prefix",
+   "options": "\nMr\nMs",
+   "placeholder": "Mr / Ms",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_vuhx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "column_break_vhjd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "complete_address",
+   "fieldtype": "Small Text",
+   "label": "Complete Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "pin_code",
+   "fieldtype": "Int",
+   "label": "Pin Code",
+   "length": 6,
+   "precision": "0",
+   "reqd": 1
+  },
+  {
+   "fieldname": "whatsapp_no",
+   "fieldtype": "Data",
+   "label": "WhatsApp No"
+  },
+  {
+   "fieldname": "section_break_aujp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_nzgl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_evuf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_mapping",
+   "fieldtype": "Link",
+   "label": "Customer Mapping",
+   "options": "User"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-25 12:41:20.002107",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Customer",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name"
+}

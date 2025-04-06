@@ -1,0 +1,193 @@
+{
+ "actions": [],
+ "autoname": "format:MB{###}",
+ "creation": "2025-03-15 13:20:10.379423",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_section",
+  "partner_type",
+  "key_person_name",
+  "column_break_vcou",
+  "business_name",
+  "contact_no",
+  "column_break_jzji",
+  "business_start_date",
+  "email",
+  "business_location_section",
+  "business_address",
+  "column_break_svya",
+  "landmark",
+  "state",
+  "column_break_oile",
+  "city",
+  "pincode",
+  "financial_details_section",
+  "pan_no",
+  "bank_ac_no",
+  "column_break_qjpq",
+  "gst_no",
+  "ifsc_code",
+  "column_break_awmr",
+  "gst_filing_frequency",
+  "ac_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "partner_type",
+   "fieldtype": "Select",
+   "label": "Partner Type",
+   "options": "\nProprietor\nPartnership\nCompany",
+   "placeholder": "Proprietor / Partnership / Company"
+  },
+  {
+   "fieldname": "key_person_name",
+   "fieldtype": "Data",
+   "label": "Key Person Name"
+  },
+  {
+   "fieldname": "column_break_vcou",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "business_name",
+   "fieldtype": "Data",
+   "label": "Business Name"
+  },
+  {
+   "fieldname": "contact_no",
+   "fieldtype": "Data",
+   "label": "Contact No"
+  },
+  {
+   "fieldname": "column_break_jzji",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "business_start_date",
+   "fieldtype": "Date",
+   "label": "Business Start Date"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "business_location_section",
+   "fieldtype": "Section Break",
+   "label": "Business Location"
+  },
+  {
+   "fieldname": "business_address",
+   "fieldtype": "Small Text",
+   "label": "Business Address"
+  },
+  {
+   "fieldname": "column_break_svya",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "landmark",
+   "fieldtype": "Data",
+   "label": "Landmark"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "column_break_oile",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "financial_details_section",
+   "fieldtype": "Section Break",
+   "label": "Financial Details"
+  },
+  {
+   "fieldname": "pan_no",
+   "fieldtype": "Data",
+   "label": "PAN No"
+  },
+  {
+   "fieldname": "bank_ac_no",
+   "fieldtype": "Data",
+   "label": "Bank A/C No"
+  },
+  {
+   "fieldname": "column_break_qjpq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gst_no",
+   "fieldtype": "Data",
+   "label": "GST No"
+  },
+  {
+   "fieldname": "ifsc_code",
+   "fieldtype": "Data",
+   "label": "IFSC Code"
+  },
+  {
+   "fieldname": "column_break_awmr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gst_filing_frequency",
+   "fieldtype": "Select",
+   "label": "GST Filing Frequency",
+   "options": "\nMonthly\nQuarterly\nComposite"
+  },
+  {
+   "fieldname": "ac_type",
+   "fieldtype": "Select",
+   "label": "A/C Type",
+   "options": "\nCurrent\nSaving\nVirtual"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-15 13:20:10.379423",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Supplier",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,138 @@
+{
+ "actions": [],
+ "creation": "2025-03-07 13:23:13.239653",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "invoice_date",
+  "rate",
+  "partner_code",
+  "column_break_ydly",
+  "invoice_no",
+  "in_quantity",
+  "partner_name",
+  "column_break_wlfx",
+  "item_code",
+  "out_quantity",
+  "warehouse_code",
+  "column_break_cdwm",
+  "item_name",
+  "amount",
+  "warehouse_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break_ydly",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_wlfx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "invoice_no",
+   "fieldtype": "Data",
+   "label": "Invoice No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Data",
+   "label": "Item Code",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "out_quantity",
+   "fieldtype": "Int",
+   "label": "Out Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_cdwm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "in_quantity",
+   "fieldtype": "Int",
+   "label": "In Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Data",
+   "label": "Partner Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "label": "Partner Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "warehouse_code",
+   "fieldtype": "Data",
+   "label": "Warehouse Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "warehouse_name",
+   "fieldtype": "Data",
+   "label": "Warehouse Name",
+   "read_only": 1
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-24 23:38:56.456055",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Inventory",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
