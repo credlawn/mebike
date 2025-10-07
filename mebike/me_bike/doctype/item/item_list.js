@@ -7,8 +7,17 @@ frappe.listview_settings["Item"] = {
         }
     },
     onload: function(listview) {
-        $('.layout-side-section').hide();
-        $('.layout-main-section-wrapper, .layout-main-section').css('margin-left', '0');
-        $('.page-container').addClass('no-sidebar');
-    }
+    listview.page.add_inner_button(__('Create New Item'), function() {
+        frappe.new_doc('Item').then(function(frm) {
+            frm.refresh_fields();
+            setTimeout(function() {
+                frm.refresh();
+            }, 100);
+        });
+    });
+    $("button[data-label='Create%20New%20Item']").removeClass("btn-default").addClass("manns_blue_button");
+    if (!frappe.user.has_role('Administrator')) {
+            $('.btn.icon-btn, button.grid-add-row').hide();
+        }
+}
 };

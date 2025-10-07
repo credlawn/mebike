@@ -6,19 +6,26 @@ class Invoice(Document):
     def validate(self):
         self.set_invoice_number()
         self.set_billing_details()
-        self.calculate_cat_gst()
-        self.calculate_total_amount()
+        self.other_calculation()           # First: calculate discount & taxable_amount
+        self.calculate_cat_gst()           # Then: use taxable_amount to calculate GST
+        self.calculate_total_amount()      # Then: calculate grand total correctly
 
     def before_insert(self):
         self.autoname()
-        
-    def after_insert(self):
+
+    def on_submit(self):
+        self.set_owner()
         self.create_record_in_partner_book_from_invoice()
 
     def autoname(self):
         """Automatically generate the name for the document."""
         if not self.name:
-           self.name = self.generate_purchase_name()
+            self.name = self.generate_purchase_name()
+            
+    def set_owner(self):
+        partner_email = frappe.db.get_value('Partner', {'name': self.partner_code}, 'email')
+        frappe.db.set_value('Invoice', self.name, 'owner', partner_email)
+        frappe.db.commit()
 
     def generate_purchase_name(self):
         """Generate the purchase name in the format MB/YY-YY/0001."""
@@ -70,11 +77,10 @@ class Invoice(Document):
 
         # Format the next code (MB/YY-YY/0001)
         return prefix + f"{next_number:04d}"
-    
-    
+
     def set_invoice_number(self):
         self.invoice_no = self.name
-        
+
     def set_billing_details(self):
         partner = frappe.get_doc('Partner', self.partner_code)
         self.party_name = partner.business_name
@@ -82,29 +88,52 @@ class Invoice(Document):
         self.billed_to_address = partner.business_address
         self.state = partner.state
         self.state_code = partner.state_code
-        
+        self.landmark = partner.landmark
+        self.city = partner.city
+        self.pincode = partner.pincode
+
+    def other_calculation(self):
+        if not self.extra_discount_per:
+            extra_discount = 0
+            taxable_value = self.invoice_amount
+        else:
+            extra_discount = self.invoice_amount * (self.extra_discount_per / 100)
+            taxable_value = self.invoice_amount - extra_discount
+
+        self.extra_discount = extra_discount
+        self.taxable_amount = taxable_value
+
     def calculate_cat_gst(self):
-        if self.state_code == "23":
-            self.igst_amount = self.total_gst_amount
+        # Use taxable_amount instead of original invoice_amount
+        base_amount = self.taxable_amount
+
+        # Use a GST rate you define on the document; fallback to 18% if not set
+        gst_rate = self.gst_slab if hasattr(self, 'gst_slab') and self.gst_slab else 0
+
+        if self.state_code != "27":
+            self.igst_amount = base_amount * gst_rate / 100
             self.sgst_amount = 0
             self.cgst_amount = 0
         else:
-            self.cgst_amount = self.total_gst_amount * 0.5
-            self.sgst_amount = self.total_gst_amount * 0.5
+            self.cgst_amount = (base_amount * gst_rate / 100) / 2
+            self.sgst_amount = (base_amount * gst_rate / 100) / 2
             self.igst_amount = 0
-            
+
+        self.total_gst_amount = self.igst_amount + self.sgst_amount + self.cgst_amount
+
     def calculate_total_amount(self):
-        if self.state_code == "23":
-            self.grand_total_amount = self.invoice_amount + self.igst_amount
+        if self.state_code != "27":
+            self.grand_total_amount = self.taxable_amount + self.igst_amount
         else:
-            self.grand_total_amount = self.invoice_amount + self.sgst_amount + self.cgst_amount
+            self.grand_total_amount = self.taxable_amount + self.sgst_amount + self.cgst_amount
+
         self.rounded_total_amount = round(self.grand_total_amount)
-    
+
     def create_record_in_partner_book_from_invoice(self):
         partner_book = frappe.get_doc("Partner Books", {"partner_code": self.partner_code})
         current_balance = partner_book.current_balance
         transaction_amount = self.rounded_total_amount
-        
+
         new_balance = current_balance - transaction_amount
 
         partner_book.append("transaction_history", {
@@ -115,15 +144,3 @@ class Invoice(Document):
         })
         partner_book.current_balance = new_balance
         partner_book.save()
-        
-        
-            
-            
-            
-        
-        
-
-    
-             
-        
-                

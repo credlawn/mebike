@@ -8,31 +8,76 @@
   "invoice_date",
   "column_break_bfjm",
   "invoice_no",
+  "reference_no",
   "column_break_ufob",
-  "section_break_tggv",
+  "partner_code",
+  "partner_email",
+  "a",
   "customer_name",
   "city",
+  "pincode",
+  "discount_type",
   "column_break_huyu",
   "mobile_no",
-  "pincode",
+  "state",
+  "discount_per",
+  "discount_amount",
   "column_break_tunt",
   "email",
   "address",
   "amended_from",
-  "section_break_syew",
-  "filter_by_category",
+  "abc",
+  "filter_by_sub_category",
   "column_break_zbiu",
   "select_item",
   "column_break_dsnr",
-  "select_quantity",
-  "section_break_pwvo",
-  "item"
+  "details",
+  "column_break_xpcu",
+  "c",
+  "chassis_no",
+  "charger_no",
+  "spare_battery_no",
+  "column_break_avyz",
+  "motor_no",
+  "controller_no",
+  "column_break_rwzd",
+  "battery_no",
+  "column_break_ncit",
+  "d",
+  "item_name",
+  "column_break_crxd",
+  "item_color",
+  "column_break_wdro",
+  "model_name",
+  "column_break_pgbe",
+  "item_type",
+  "e",
+  "quantity",
+  "weight",
+  "gst_slab",
+  "igst",
+  "sgst",
+  "cgst",
+  "hsn_code",
+  "customer_id",
+  "column_break_gtrg",
+  "mrp",
+  "discount",
+  "sub_total",
+  "total_saving",
+  "column_break_utgm",
+  "taxable_value",
+  "taxes_and_charges",
+  "grand_total",
+  "rounded_total"
  ],
  "fields": [
   {
    "default": "Today",
    "fieldname": "invoice_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Invoice Date"
   },
   {
@@ -42,6 +87,7 @@
   {
    "fieldname": "invoice_no",
    "fieldtype": "Data",
+   "in_standard_filter": 1,
    "label": "Invoice No",
    "read_only": 1
   },
@@ -55,14 +101,12 @@
    "label": "Invoice Details"
   },
   {
-   "fieldname": "section_break_tggv",
-   "fieldtype": "Section Break",
-   "label": "Customer Details"
-  },
-  {
    "fieldname": "customer_name",
    "fieldtype": "Data",
-   "label": "Customer Name"
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer Name",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_huyu",
@@ -71,7 +115,8 @@
   {
    "fieldname": "mobile_no",
    "fieldtype": "Data",
-   "label": "Mobile No"
+   "label": "Mobile No",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_tunt",
@@ -85,17 +130,20 @@
   {
    "fieldname": "city",
    "fieldtype": "Data",
-   "label": "City"
+   "label": "City",
+   "reqd": 1
   },
   {
    "fieldname": "pincode",
    "fieldtype": "Data",
-   "label": "Pincode"
+   "label": "Pincode",
+   "reqd": 1
   },
   {
    "fieldname": "address",
    "fieldtype": "Small Text",
-   "label": "Address"
+   "label": "Address",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
@@ -108,32 +156,15 @@
    "search_index": 1
   },
   {
-   "fieldname": "section_break_pwvo",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "item",
-   "fieldtype": "Table",
-   "label": "Item",
-   "options": "Items"
-  },
-  {
-   "fieldname": "section_break_syew",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "filter_by_category",
-   "fieldtype": "Data",
-   "label": "Filter by Category"
-  },
-  {
    "fieldname": "column_break_zbiu",
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval: doc.filter_by_sub_category",
    "fieldname": "select_item",
    "fieldtype": "Link",
    "label": "Select Item",
+   "mandatory_depends_on": "eval: doc.filter_by_sub_category",
    "options": "Item"
   },
   {
@@ -141,16 +172,310 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "select_quantity",
+   "fieldname": "chassis_no",
+   "fieldtype": "Data",
+   "label": "Chassis No"
+  },
+  {
+   "fieldname": "battery_no",
+   "fieldtype": "Data",
+   "label": "Battery No"
+  },
+  {
+   "fieldname": "controller_no",
+   "fieldtype": "Data",
+   "label": "Controller No"
+  },
+  {
+   "fieldname": "filter_by_sub_category",
+   "fieldtype": "Select",
+   "label": "Filter by Category",
+   "options": "\nScooter\nBike\nCharger\nMotor\nBattery\nController\nDisplay"
+  },
+  {
+   "fieldname": "abc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_gtrg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_utgm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "sub_total",
+   "fieldtype": "Currency",
+   "label": "Sub Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "taxes_and_charges",
+   "fieldtype": "Currency",
+   "label": "Taxes & Charges",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "rounded_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rounded Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "motor_no",
+   "fieldtype": "Data",
+   "label": "Motor No"
+  },
+  {
+   "fieldname": "charger_no",
+   "fieldtype": "Data",
+   "label": "Charger No"
+  },
+  {
+   "fieldname": "column_break_xpcu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_avyz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_rwzd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ncit",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Link",
+   "label": "Bill From",
+   "options": "Partner",
+   "read_only": 1
+  },
+  {
+   "fieldname": "spare_battery_no",
+   "fieldtype": "Data",
+   "label": "Battery No"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_crxd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_wdro",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_pgbe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_color",
+   "fieldtype": "Data",
+   "label": "Item Color",
+   "read_only": 1
+  },
+  {
+   "fieldname": "model_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Model Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_type",
+   "fieldtype": "Data",
+   "label": "Item Type",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "quantity",
    "fieldtype": "Int",
-   "label": "Select Quantity"
+   "label": "Quantity",
+   "mandatory_depends_on": "eval: doc.select_item"
+  },
+  {
+   "default": "0",
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight (In KG)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "discount_type",
+   "fieldtype": "Select",
+   "label": "Discount Type (If Offered)",
+   "options": "\nNo Discount\nPercentage\nFixed Amount",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.discount_type == \"Fixed Amount\"",
+   "description": "Pre GST Value will be auto calculated.",
+   "fieldname": "discount_amount",
+   "fieldtype": "Currency",
+   "label": "Discount Amount",
+   "mandatory_depends_on": "eval: doc.discount_type == \"Fixed Amount\"",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "discount",
+   "fieldtype": "Currency",
+   "label": "Discount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "taxable_value",
+   "fieldtype": "Currency",
+   "label": "Taxable Value",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gst_slab",
+   "fieldtype": "Percent",
+   "label": "GST Slab",
+   "precision": "0",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.discount_type == \"Percentage\"",
+   "description": "Pre GST Value will be auto calculated.",
+   "fieldname": "discount_per",
+   "fieldtype": "Float",
+   "label": "Discount %",
+   "mandatory_depends_on": "eval: doc.discount_type == \"Percentage\"",
+   "precision": "1"
+  },
+  {
+   "fieldname": "total_saving",
+   "fieldtype": "Currency",
+   "label": "Total Saving",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mrp",
+   "fieldtype": "Currency",
+   "label": "MRP",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "igst",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "IGST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sgst",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "SGST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cgst",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "CGST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "a",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "c",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "d",
+   "fieldtype": "Section Break",
+   "label": "Item Summary"
+  },
+  {
+   "fieldname": "e",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "partner_email",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Partner Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_no",
+   "fieldtype": "Data",
+   "label": "Reference No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Read Only",
+   "label": "Details"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State List",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hsn_code",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "HSN Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Customer ID",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-03-28 12:45:37.266134",
+ "modified": "2025-08-31 17:45:16.549229",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Customer Billing",

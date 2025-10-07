@@ -10,11 +10,19 @@ class Warehouse(Document):
         self.set_warehouse_code()
         self.calculate_item_amount()
         
+    def on_update(self):
+        self.set_warehouse_owner()
+        
     def before_insert(self):
         self.autoname()
         
+        
     def set_warehouse_code(self):
         self.warehouse_code = self.name
+        
+    def set_warehouse_owner(self):
+        frappe.db.set_value('Warehouse', self.name, 'owner', self.email)
+        frappe.db.commit()
     
     def autoname(self):
         last_doc = frappe.get_all('Warehouse', filters={'name': ['like', 'WH%']}, fields=['name'], order_by='name desc', limit=1)

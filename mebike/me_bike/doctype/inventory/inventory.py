@@ -57,11 +57,10 @@ class Inventory(Document):
         self.name = f"{new_letters}{new_number_str}"
         
     def set_warehouse(self):
-        
         warehouse = frappe.get_value(
             "Warehouse",
             filters={"partner_code": self.partner_code},
-            fieldname=["name", "warehouse_code", "warehouse_name"],
+            fieldname=["name", "warehouse_code", "warehouse_name", "email"],
             as_dict=True
         )
         
@@ -76,37 +75,41 @@ class Inventory(Document):
         
         warehouse_doc = frappe.get_doc("Warehouse", warehouse.name)
         item_found = False
-        
+
+        # Determine the current user's email
+        current_user_email = "billing@mebikeindia.com" if frappe.session.user == "Administrator" else frappe.session.user
+        skip_quantity_validation = (warehouse.email == current_user_email)
+
         for item in warehouse_doc.get("warehouse_items", []):
             if item.item_code == self.item_code:
                 item_found = True
-                
+
                 current_qty = item.quantity or 0
                 in_qty = self.in_quantity or 0
                 out_qty = self.out_quantity or 0
                 new_quantity = current_qty + in_qty - out_qty
-                
-                if new_quantity < 0:
+
+                if new_quantity < 0 and not skip_quantity_validation:
                     frappe.throw(_("Insufficient stock for item {0}. Available: {1}, Trying to remove: {2}")
                                 .format(self.item_code, current_qty, out_qty))
-                
+
                 item.quantity = new_quantity
                 if self.rate is not None:
                     item.rate = self.rate
                 break
-        
+
         if not item_found:
             initial_quantity = (self.in_quantity or 0) - (self.out_quantity or 0)
-            
-            if initial_quantity < 0:
+
+            if initial_quantity < 0 and not skip_quantity_validation:
                 frappe.throw(_("Cannot create item with negative initial quantity"))
-            
+
             warehouse_doc.append("warehouse_items", {
                 "item_code": self.item_code,
                 "item_name": self.item_name,
                 "quantity": initial_quantity,
                 "rate": self.rate if self.rate is not None else 0
             })
-        
+
         warehouse_doc.save()
         frappe.db.commit()

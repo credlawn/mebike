@@ -19,7 +19,13 @@ class Purchase(Document):
         
     def on_update(self):
         self.refresh_available_credit_limit()
+        self.set_owner()
         self.reload()
+        
+    def set_owner(self):
+        partner_email = frappe.db.get_value('Partner', {'name': self.partner_code}, 'email')                                 
+        frappe.db.set_value('Purchase', self.name, 'owner', partner_email)
+        frappe.db.commit()
 
     def autoname(self):
         """Automatically generate the name for the document."""
@@ -85,9 +91,8 @@ class Purchase(Document):
             frappe.throw("Total Quantity cannot be Zero")
     
 
-
     def set_partner_name(self):
-        if not self.partner_name or self.partner_name == "Not Mapped":
+        if "Manns Partner" in frappe.get_roles(frappe.session.user):
             user_email = frappe.session.user
             partner = frappe.get_all("Partner", filters={"email": user_email}, fields=["name", "business_name"])
 
@@ -95,8 +100,13 @@ class Purchase(Document):
                 self.partner_code = partner[0].name
                 self.partner_name = partner[0].business_name
             else:
-                self.partner_code = None
-                self.partner_name = "Not Mapped"
+                if self.partner_code: 
+                    partner_details = frappe.get_doc("Partner", self.partner_code)
+                    if partner_details:
+                        self.partner_name = partner_details.business_name
+                    else:
+                        self.partner_name = "Nope"
+
 
     @frappe.whitelist()
     def create_invoice_from_purchase(purchase_doc_name):
@@ -109,6 +119,8 @@ class Purchase(Document):
     
     def refresh_available_credit_limit(self):
         credit_limit = frappe.db.get_value("Partner Books", {"partner_code": self.partner_code}, "available_credit_limit")
+        if credit_limit is None:
+             credit_limit = 0
         frappe.db.set_value(self.doctype, self.name, "available_credit_limit", credit_limit)
         frappe.db.commit()
         

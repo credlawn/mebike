@@ -1,16 +1,34 @@
 frappe.ui.form.on('Purchase', {
-    onload: function(frm) {
-        frm.get_field('items').grid.cannot_add_rows = true;
-    },
 
-    
+    refresh: function(frm) {
+        
+        if (frm.is_new() || frm.is_dirty()) {
+            frm.toggle_display('xyz', true);
+            frm.enable_save();
 
-    refresh: function(frm) { 
+        } else {
+            frm.toggle_display('xyz', false);
+            frm.set_df_property('items', 'read_only', true);
+            frm.disable_save();
+
+        }
+        if (!frm.doc.partner_code) {
+            frm.toggle_display('partner_code', true);
+            frm.toggle_display('partner_name', false);
+            frm.set_df_property('partner_code', 'read_only', false);
+        } else {
+            frm.toggle_display('partner_code', false);
+            frm.toggle_display('partner_name', true);
+            frm.set_df_property('partner_name', 'read_only', true);
+        }
+        const grid = frm.fields_dict.items.grid;
+        grid.wrapper.find('.grid-row').css('pointer-events', 'none');
+
         if (frm.fields_dict['select_quantity']) {
             const $wrapper = frm.fields_dict['select_quantity'].$wrapper;
             if ($('#add_item_btn').length === 0) {
                 $wrapper.css({ display: 'flex', alignItems: 'center', gap: '25px' })
-                    .append('<button class="btn btn-sm btn-primary" id="add_item_btn">Add Item</button>');
+                    .append('<button class="btn btn-sm manns_green_button" id="add_item_btn">Add Item</button>');
             }
 
             $('#add_item_btn').on('click', function() {
@@ -66,23 +84,48 @@ frappe.ui.form.on('Purchase', {
             });
         }
 
-        setTimeout(() => {
-            frm.page.actions.find('[data-label="Help"]').parent().parent().remove();
-        }, 500);
+        if (
+            frappe.user.has_role('Accounts Manager') &&
+            (frm.doc.status === "Amount Pending" || frm.doc.status === "Approval Pending") &&
+            !frm.is_new()
+        ) {
+            frm.add_custom_button(__('Reject PO'), function() {
+                frappe.confirm(
+                    __('Are you sure you want to reject this PO?'),
+                    function() {
+                        frappe.call({
+                            method: 'frappe.client.set_value',
+                            args: {
+                                doctype: frm.doc.doctype,
+                                name: frm.doc.name,
+                                fieldname: 'status',
+                                value: 'Rejected'
+                            },
+                            callback: function(r) {
+                                if(!r.exc) {
+                                    frm.reload_doc();
+                                    frappe.show_alert({message: __('PO Rejected'), indicator: 'red'});
+                                }
+                            }
+                        });
+                    },
+                    function() {
+                    }
+                );
+            });
 
-        if (!frm.is_new()) {
-            frm.fields_dict['section_break_nocy'].wrapper.hide();
-            frm.set_df_property('items', 'read_only', true);
-
-        } else {
-            frm.set_df_property('items', 'read_only', false);
+            $("button[data-label='Reject%20PO']").removeClass("btn-default").addClass("manns_red_button");
         }
 
 
 
 
-        if (frappe.user.has_role('Accounts Manager') && frm.doc.status === "Approval Pending" && !frm.is_new()) {
-            frm.add_custom_button(__('Refresh Credit Limit'), function() {
+        if (
+            frappe.user.has_role('Accounts Manager') &&
+            (frm.doc.status === "Amount Pending") &&
+            !frm.is_new()
+        ) {
+            frm.add_custom_button(__('Refresh Limit'), function() {
                 frappe.call({
                     method: 'mebike.scripts.refresh_credit_limit.refresh_available_credit_limit',
                     args: { docname: frm.doc.name },
@@ -91,54 +134,150 @@ frappe.ui.form.on('Purchase', {
                             let formattedAmount = response.message;
                             let numericAmount = parseFloat(formattedAmount.replace(/[^0-9.-]+/g, ""));
                             let color = numericAmount < 1 ? "red" : "green";
+                            let total_value = frm.doc.rounded_total || 0;
 
-                            frappe.msgprint({
-                                message: __('Available Credit Limit is <b style="color: {0};">₹ {1}</b>', [color, formattedAmount]),
-                                indicator: color
-                            });
-
-                            frm.reload_doc();
+                            if (numericAmount >= total_value) {
+                                frappe.call({
+                                    method: 'frappe.client.set_value',
+                                    args: {
+                                        doctype: 'Purchase',
+                                        name: frm.doc.name,
+                                        fieldname: 'status',
+                                        value: 'Ready for Billing'
+                                    },
+                                    callback: function() {
+                                        frappe.msgprint({
+                                            message: __(
+                                                `Available Credit Limit is <b style="color: {0};">₹ {1}</b><br><br>` +
+                                                `<b style="color: green;">This PO can be Billed Now</b>`,
+                                                [color, formattedAmount]
+                                            ),
+                                            indicator: 'green',
+                                            title: __('Credit Approved')
+                                        });
+                                        frm.reload_doc();
+                                    }
+                                });
+                            } else {
+                                let shortfall = total_value - numericAmount;
+                                frappe.msgprint({
+                                    message: __(
+                                        `Available Credit Limit is <b style="color: {0};">₹ {1}</b><br><br>` +
+                                        `<b style="color: red;">Shortfall: ₹ ${shortfall.toLocaleString('en-IN')}</b>`,
+                                        [color, formattedAmount]
+                                    ),
+                                    indicator: 'red',
+                                    title: __('Credit Limit is Low')
+                                });
+                            }
                         }
                     }
                 });
-            })
+            });
+            $("button[data-label='Refresh%20Limit']").removeClass("btn-default").addClass("manns_green_button");
+        }
+
+        if (
+            frappe.user.has_role('Manns Partner') && !frm.is_new() && frm.doc.status === "Amount Pending" ) {
+            frm.add_custom_button(__('Check Short Amount'), function() {
+                frappe.call({
+                    method: 'mebike.scripts.refresh_credit_limit.refresh_available_credit_limit',
+                    args: { docname: frm.doc.name },
+                    callback: function(response) {
+                        if (response.message) {
+                            let formattedAmount = response.message;
+                            let numericAmount = parseFloat(formattedAmount.replace(/[^0-9.-]+/g, ""));
+                            let color = numericAmount < 1 ? "red" : "green";
+                            let total_value = frm.doc.rounded_total || 0;
+
+                            if (numericAmount >= total_value) {
+                                frappe.msgprint({
+                                    message: __(
+                                        `Available Limit is <b style="color: {0};">₹ {1}</b><br><br>` +
+                                        `<b style="color: green;">This PO can be Billed Now</b>`,
+                                        [color, formattedAmount]
+                                    ),
+                                    indicator: 'green',
+                                    title: __('Sufficient Limit')
+                                });
+                            } else {
+                                let shortfall = total_value - numericAmount;
+                                frappe.msgprint({
+                                    message: __(
+                                        `Your Available Limit: <b style="color: ${color}; font-weight: 600;">₹ ${formattedAmount}</b><br><br>` +
+                                        `Shortfall Amount: <span style="color: red; font-weight: 600;">₹ ${shortfall.toLocaleString('en-IN')}</span>`
+                                    ),
+
+                                    indicator: 'red',
+                                    title: __('Avaliable Limit is Low')
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+            $("button[data-label='Check%20Short%20Amount']").removeClass("btn-default").addClass("manns_blue_button");
+        }
+
+                
+        if (frappe.user.has_role('Accounts Manager') && frm.doc.status === "Approval Pending" && !frm.is_new()) {
+            frm.add_custom_button(__('Approve PO'), function () {
+                let credit_limit = frm.doc.available_credit_limit || 0;
+                let total_value = frm.doc.rounded_total || 0;
+
+                if (credit_limit < total_value) {
+                    let shortfall = total_value - credit_limit;
+
+                    frappe.msgprint({
+                        message: __(`PO Approved but Credit Limit is less than Total Purchase Value<br><br>
+                            <b style="color: red;">Short Value: ₹ ${shortfall.toLocaleString('en-IN')}</b>`),
+                        indicator: 'red',
+                        title: __('PO Approved')
+                    });
+
+                    frappe.call({
+                        method: 'frappe.client.set_value',
+                        args: {
+                            doctype: 'Purchase',
+                            name: frm.doc.name,
+                            fieldname: 'status',
+                            value: 'Amount Pending'
+                        }
+                    });
+
+                } else {
+                    frappe.call({
+                        method: 'frappe.client.set_value',
+                        args: {
+                            doctype: 'Purchase',
+                            name: frm.doc.name,
+                            fieldname: 'status',
+                            value: 'Ready for Billing'
+                        }
+                    }).then(() => {
+                        frappe.msgprint(__('PO approved successfully & Can be Billed Now'));
+                    });
+                }
+            });
+
+            $("button[data-label='Approve%20PO']").removeClass("btn-default").addClass("manns_green_button");
         }
 
 
         if (frappe.user.has_role('Accounts Manager') && frm.doc.status === "Approval Pending" && !frm.is_new()) {
             frm.add_custom_button(__('Edit PO'), function() {
-                frm.fields_dict['section_break_nocy'].wrapper.show();
                 frm.set_df_property('items', 'read_only', false);
-            });
-        }
-        
-                
-        if (frappe.user.has_role('Accounts Manager') && frm.doc.status === "Approval Pending" && !frm.is_new()) {
-            frm.add_custom_button(__('Approve PO'), function() {
-                let credit_limit = frm.doc.available_credit_limit || 0;
-                let total_value = frm.doc.rounded_total || 0;
-                if (credit_limit < total_value) {
-                    let shortfall = total_value - credit_limit;
+                frm.toggle_display('xyz', true);
+                frm.enable_save();
+                grid.wrapper.find('.grid-row').css('pointer-events', 'auto');
+                frm.remove_custom_button('Approve PO');
+                frm.remove_custom_button('Refresh Limit');
 
-                    frappe.msgprint({
-                        message: __(`Credit Limit is less than Total Purchase Value<br><br>
-                            <b style="color: red;">Short Value: ₹ ${shortfall.toLocaleString('en-IN')}</b>`),
-                        indicator: 'red',
-                        title: __('Insufficient Credit Limit')
-                    });
-                    return;
-                }
-                frappe.call({
-                    method: 'frappe.client.set_value',
-                    args: {
-                        doctype: 'Purchase',
-                        name: frm.doc.name,
-                        fieldname: 'status',
-                        value: 'Ready for Billing'
-                    },
-                });   
             });
+            $("button[data-label='Edit%20PO']").removeClass("btn-default").addClass("manns_red_button");
         }
+
+        
 
 
         if (frappe.user.has_role('Accounts Manager') && frm.doc.status === 'Ready for Billing' && !frm.is_new()) {
@@ -156,6 +295,7 @@ frappe.ui.form.on('Purchase', {
                     }
                 });
             });
+            $("button[data-label='Generate%20Invoice']").removeClass("btn-default").addClass("manns_green_button");
         }
         
         if (frappe.user.has_role('Manns Partner') && frm.doc.status === 'Stock in Transit' && !frm.is_new()) {
@@ -175,22 +315,23 @@ frappe.ui.form.on('Purchase', {
                     freeze_message: __('Receiving Stock...')
                 });
             });
+            $("button[data-label='Receive%20Stock']").removeClass("btn-default").addClass("manns_green_button");
         }
     }
-});
-
-
+})
 
 function fetchItemDetailsAndCalculate(frm, cdt, cdn) {
     var row = locals[cdt][cdn];
 
     if (row.item_code) {
-        frappe.db.get_value('Item', row.item_code, ['partner_price_before_gst', 'item_name', 'partner_gst', 'item_weight'], function(data) {
+        frappe.db.get_value('Item', row.item_code, ['partner_price_before_gst', 'item_name', 'partner_gst', 'item_weight', 'hsn_code', 'item_mrp'], function(data) {
             // Set item details in the new row
             frappe.model.set_value(cdt, cdn, 'rate', data.partner_price_before_gst);
             frappe.model.set_value(cdt, cdn, 'item_name', data.item_name);
             frappe.model.set_value(cdt, cdn, 'item_gst', data.partner_gst);
             frappe.model.set_value(cdt, cdn, 'item_weight', data.item_weight);
+            frappe.model.set_value(cdt, cdn, 'hsn_code', data.hsn_code);
+            frappe.model.set_value(cdt, cdn, 'item_mrp', data.item_mrp);
 
             // Trigger calculations for the new row
             update_amount(cdt, cdn);
@@ -210,6 +351,8 @@ function fetchItemDetailsAndCalculate(frm, cdt, cdn) {
         frappe.model.set_value(cdt, cdn, 'item_name', '');
         frappe.model.set_value(cdt, cdn, 'item_gst', 0);
         frappe.model.set_value(cdt, cdn, 'item_weight', 0);
+        frappe.model.set_value(cdt, cdn, 'hsn_code', 0);
+        frappe.model.set_value(cdt, cdn, 'item_mrp', 0);
     }
 
     if (!row.quantity) {

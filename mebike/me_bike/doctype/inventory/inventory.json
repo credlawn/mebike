@@ -38,6 +38,8 @@
   {
    "fieldname": "item_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Item Name",
    "read_only": 1
   },
@@ -52,6 +54,7 @@
    "default": "0",
    "fieldname": "amount",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Amount",
    "precision": "2",
    "read_only": 1
@@ -59,6 +62,7 @@
   {
    "fieldname": "invoice_date",
    "fieldtype": "Date",
+   "in_standard_filter": 1,
    "label": "Invoice Date",
    "read_only": 1
   },
@@ -72,6 +76,7 @@
    "default": "0",
    "fieldname": "out_quantity",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Out Quantity",
    "read_only": 1
   },
@@ -83,12 +88,15 @@
    "default": "0",
    "fieldname": "in_quantity",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "In Quantity",
    "read_only": 1
   },
   {
    "fieldname": "partner_code",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Partner Code",
    "read_only": 1
   },
@@ -114,7 +122,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-24 23:38:56.456055",
+ "modified": "2025-06-27 17:00:21.904847",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Inventory",
@@ -132,7 +140,7 @@
    "write": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "creation",
  "sort_order": "DESC",
  "states": []
 }

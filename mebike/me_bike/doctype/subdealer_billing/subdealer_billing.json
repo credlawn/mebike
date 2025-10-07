@@ -1,0 +1,523 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-28 04:08:15.428494",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "purchase_order_date",
+  "status",
+  "invoice_date",
+  "available_credit_limit",
+  "column_break_vztw",
+  "purchase_order_no",
+  "invoice_no",
+  "column_break_meoy",
+  "partner_name",
+  "partner_code",
+  "xyz",
+  "select_category",
+  "column_break_ebaa",
+  "select_item",
+  "column_break_phgc",
+  "select_quantity",
+  "section_break_dqfj",
+  "items",
+  "section_break_vidg",
+  "total_quantity",
+  "total_weight",
+  "other_charges",
+  "gst_slab",
+  "column_break_epqx",
+  "sub_total",
+  "total_taxes_and_charges",
+  "igst_amount",
+  "sgst_amount",
+  "cgst_amount",
+  "column_break_pjxq",
+  "grand_total",
+  "rounded_total",
+  "amount_with_charges",
+  "from_party_details_section",
+  "from_party_name",
+  "bill_from_address",
+  "column_break_qiuz",
+  "from_gst_no",
+  "from_state",
+  "from_partner_email",
+  "column_break_ayow",
+  "from_state_code",
+  "from_city",
+  "from_pincode",
+  "from_landmark",
+  "bill_to_party_details_section",
+  "to_party_name",
+  "bill_to_address",
+  "column_break_mhjj",
+  "to_gst_no",
+  "to_state",
+  "to_partner_email",
+  "column_break_dxat",
+  "to_state_code",
+  "to_city",
+  "to_pincode",
+  "to_landmark",
+  "ship_to_party_details_section",
+  "ship_to_party_name",
+  "ship_to_address",
+  "column_break_svkp",
+  "ship_to_state",
+  "ship_to_state_code",
+  "ship_to_gst_no",
+  "column_break_gakp",
+  "ship_to_city",
+  "ship_to_pincode",
+  "ship_to_landmark",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "purchase_order_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date",
+   "reqd": 1
+  },
+  {
+   "default": "Approval Pending",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "available_credit_limit",
+   "fieldtype": "Currency",
+   "label": "Available Credit Limit",
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_vztw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "purchase_order_no",
+   "fieldtype": "Data",
+   "label": "Purchase Order No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "invoice_no",
+   "fieldtype": "Link",
+   "label": "Invoice No",
+   "options": "Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_meoy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "label": "Partner Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Link",
+   "label": "Select Dealer",
+   "options": "Partner",
+   "reqd": 1
+  },
+  {
+   "fieldname": "xyz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "select_category",
+   "fieldtype": "Select",
+   "label": "Filter by Category",
+   "options": "\nScooter\nBike\nCharger\nMotor\nBattery\nController\nDisplay\nAccessories"
+  },
+  {
+   "fieldname": "column_break_ebaa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "select_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Select Item",
+   "mandatory_depends_on": "eval:doc.total_quantity == \"0\" ",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_phgc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "select_quantity",
+   "fieldtype": "Int",
+   "label": "Select Quantity",
+   "mandatory_depends_on": "eval:doc.total_quantity == \"0\"",
+   "read_only_depends_on": " "
+  },
+  {
+   "fieldname": "section_break_dqfj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Items"
+  },
+  {
+   "fieldname": "section_break_vidg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_quantity",
+   "fieldtype": "Int",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "label": "Total Weight (In KG)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_epqx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_pjxq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "sub_total",
+   "fieldtype": "Currency",
+   "label": "Sub Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_taxes_and_charges",
+   "fieldtype": "Currency",
+   "label": "Total GST Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "rounded_total",
+   "fieldtype": "Currency",
+   "label": "Rounded Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_party_details_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Bill From Party Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_party_name",
+   "fieldtype": "Data",
+   "label": "From Party Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qiuz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_gst_no",
+   "fieldtype": "Data",
+   "label": "From GST No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ayow",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_state",
+   "fieldtype": "Data",
+   "label": "From State",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_state_code",
+   "fieldtype": "Data",
+   "label": "From State Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_city",
+   "fieldtype": "Data",
+   "label": "From City",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_pincode",
+   "fieldtype": "Data",
+   "label": "From Pincode",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_landmark",
+   "fieldtype": "Data",
+   "label": "From Landmark",
+   "read_only": 1
+  },
+  {
+   "fieldname": "bill_to_party_details_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Bill To Party Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_party_name",
+   "fieldtype": "Data",
+   "label": "To Party Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "bill_from_address",
+   "fieldtype": "Data",
+   "label": "Bill From Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "bill_to_address",
+   "fieldtype": "Small Text",
+   "label": "Bill To Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mhjj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_dxat",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "to_gst_no",
+   "fieldtype": "Data",
+   "label": "To GST No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_state",
+   "fieldtype": "Data",
+   "label": "To State",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_state_code",
+   "fieldtype": "Data",
+   "label": "To State Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_city",
+   "fieldtype": "Data",
+   "label": "To City",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_pincode",
+   "fieldtype": "Data",
+   "label": "To Pin Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_landmark",
+   "fieldtype": "Data",
+   "label": "To Landmark",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ship_to_party_details_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Ship to Party Details"
+  },
+  {
+   "fieldname": "ship_to_party_name",
+   "fieldtype": "Data",
+   "label": "Ship to Party Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ship_to_address",
+   "fieldtype": "Small Text",
+   "label": "Ship to Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_svkp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gakp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ship_to_state",
+   "fieldtype": "Data",
+   "label": "Ship To State",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ship_to_state_code",
+   "fieldtype": "Data",
+   "label": "Ship To State Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ship_to_city",
+   "fieldtype": "Data",
+   "label": "Ship To City",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ship_to_pincode",
+   "fieldtype": "Data",
+   "label": "Ship To Pin Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ship_to_landmark",
+   "fieldtype": "Data",
+   "label": "Ship To Landmark",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_partner_email",
+   "fieldtype": "Data",
+   "label": "From Partner Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "to_partner_email",
+   "fieldtype": "Data",
+   "label": "To Partner Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Subdealer Billing",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "igst_amount",
+   "fieldtype": "Currency",
+   "label": "IGST Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sgst_amount",
+   "fieldtype": "Currency",
+   "label": "SGST Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cgst_amount",
+   "fieldtype": "Currency",
+   "label": "CGST Amount",
+   "read_only": 1
+  },
+  {
+   "description": "This amount will be calculated at the time of the final invoice.",
+   "fieldname": "other_charges",
+   "fieldtype": "Currency",
+   "label": "Other Charges",
+   "placeholder": "E.g. Transport Charges",
+   "precision": "2"
+  },
+  {
+   "fieldname": "amount_with_charges",
+   "fieldtype": "Currency",
+   "label": "Amount With Charges",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ship_to_gst_no",
+   "fieldtype": "Data",
+   "label": "Ship To GST No"
+  },
+  {
+   "fieldname": "gst_slab",
+   "fieldtype": "Data",
+   "label": "GST Slab",
+   "read_only": 1
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-07-01 05:11:06.217731",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Subdealer Billing",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

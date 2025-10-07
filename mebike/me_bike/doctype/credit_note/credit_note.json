@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "creation": "2025-06-30 14:37:37.561875",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_mmge",
+  "old_cn",
+  "cn_month",
+  "column_break_zrgd",
+  "column_break_elxo",
+  "section_break_inwx",
+  "cn_date",
+  "transaction_amount",
+  "column_break_gdcp",
+  "partner_code",
+  "remarks",
+  "column_break_nydl",
+  "partner_name",
+  "cn_no"
+ ],
+ "fields": [
+  {
+   "fieldname": "cn_no",
+   "fieldtype": "Data",
+   "label": "CN No",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_gdcp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "cn_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "CN Date",
+   "read_only_depends_on": "eval:doc.old_cn == 0",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_nydl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Partner Code",
+   "options": "Partner"
+  },
+  {
+   "depends_on": "eval:doc.partner_code != null && doc.partner_name != null",
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "label": "Partner Name"
+  },
+  {
+   "fieldname": "transaction_amount",
+   "fieldtype": "Currency",
+   "label": "Transaction Amount",
+   "precision": "2"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_mmge",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "old_cn",
+   "fieldtype": "Check",
+   "label": "Old CN"
+  },
+  {
+   "depends_on": "eval:doc.old_cn == 1",
+   "fieldname": "cn_month",
+   "fieldtype": "Select",
+   "label": "CN Month",
+   "mandatory_depends_on": "eval:doc.old_cn == 1",
+   "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
+  },
+  {
+   "fieldname": "section_break_inwx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_zrgd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_elxo",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-01 15:15:50.659001",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Credit Note",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "cn_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "cn_no"
+}

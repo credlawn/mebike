@@ -1,0 +1,695 @@
+{
+ "actions": [],
+ "creation": "2025-04-09 17:17:44.728729",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "details_tab",
+  "item_details_section",
+  "match_code",
+  "model",
+  "serial_no",
+  "column_break_ejfb",
+  "item_code",
+  "item_category",
+  "column_break_sdnl",
+  "item_name",
+  "item_sub_category",
+  "column_break_pqut",
+  "item_color",
+  "ownership",
+  "partner_code",
+  "battery_details_section",
+  "battery_no",
+  "column_break_gfpc",
+  "charger_no",
+  "column_break_esbm",
+  "column_break_anme",
+  "section_break_muvj",
+  "chassis_no",
+  "column_break_sdot",
+  "motor_no",
+  "column_break_tzwf",
+  "controller_no",
+  "column_break_flvt",
+  "hsn_code",
+  "purchase_tab",
+  "manns_purchase_details_section",
+  "manns_purchase_date",
+  "column_break_zzkm",
+  "manns_invoice_no",
+  "column_break_bbgs",
+  "supplier",
+  "column_break_crhf",
+  "partner_purchase_details_section",
+  "partner_purchase_date",
+  "column_break_aahd",
+  "partner_invoice_no",
+  "column_break_zqbu",
+  "column_break_edpw",
+  "partner_name",
+  "customer_purchase_details_section",
+  "customer_purchase_date",
+  "column_break_qyga",
+  "customer_invoice_no",
+  "column_break_jrrh",
+  "column_break_hmlu",
+  "warranty_tab",
+  "manns_war",
+  "mw_motor_months",
+  "mw_motor_status",
+  "mw_motor_start_date",
+  "column_break_jpap",
+  "mw_controller_months",
+  "mw_controller_status",
+  "mw_controller_start_date",
+  "column_break_ptvr",
+  "battery_warranty_months",
+  "mw_battery_status",
+  "mw_battery_start_date",
+  "column_break_upko",
+  "cus_war",
+  "cw_motor_months",
+  "cw_motor_status",
+  "cw_motor_start_date",
+  "column_break_dtpi",
+  "cw_controller_months",
+  "cw_controller_status",
+  "cw_controller_start_date",
+  "column_break_aslj",
+  "cw_battery_months",
+  "cw_battery_status",
+  "cw_battery_start_date",
+  "column_break_kvup",
+  "pricing_tab",
+  "manns_pricing_section",
+  "manns_price_pre_gst",
+  "column_break_dgrt",
+  "manns_gst",
+  "column_break_hxhi",
+  "manns_price_with_gst",
+  "partner_pricing_section",
+  "partner_price_pre_gst",
+  "column_break_giva",
+  "partner_gst",
+  "column_break_ecvs",
+  "partner_price_with_gst",
+  "customer_pricing_section",
+  "customer_price_pre_gst",
+  "column_break_iwtw",
+  "customer_gst",
+  "column_break_eill",
+  "customer_price_with_gst",
+  "mrp_section",
+  "mrp",
+  "column_break_jigu",
+  "gst_slab",
+  "column_break_ovhc",
+  "item_weight"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_details_section",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Code",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_ejfb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_sdnl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_category",
+   "fieldtype": "Select",
+   "label": "Item Category",
+   "options": "\nVehicle\nBattery\nMotor\nCharger\nAccessories",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_pqut",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Manns",
+   "fieldname": "ownership",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Ownership",
+   "options": "Manns\nPartner\nCustomer"
+  },
+  {
+   "fieldname": "battery_details_section",
+   "fieldtype": "Section Break",
+   "label": "Battery Details"
+  },
+  {
+   "fieldname": "battery_no",
+   "fieldtype": "Data",
+   "label": "Battery No",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_gfpc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_esbm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_anme",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_muvj",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Parts Details"
+  },
+  {
+   "fieldname": "chassis_no",
+   "fieldtype": "Data",
+   "label": "Chassis No",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_sdot",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "motor_no",
+   "fieldtype": "Data",
+   "label": "Motor No",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_tzwf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "controller_no",
+   "fieldtype": "Data",
+   "label": "Controller No",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_flvt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "purchase_tab",
+   "fieldtype": "Tab Break",
+   "label": "Purchase"
+  },
+  {
+   "fieldname": "manns_purchase_details_section",
+   "fieldtype": "Section Break",
+   "label": "Manns Purchase Details"
+  },
+  {
+   "fieldname": "manns_purchase_date",
+   "fieldtype": "Date",
+   "label": "Manns Purchase Date"
+  },
+  {
+   "fieldname": "column_break_zzkm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "manns_invoice_no",
+   "fieldtype": "Data",
+   "label": "Manns Invoice No"
+  },
+  {
+   "fieldname": "column_break_bbgs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "column_break_crhf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_purchase_details_section",
+   "fieldtype": "Section Break",
+   "label": "Partner Purchase Details"
+  },
+  {
+   "fieldname": "partner_purchase_date",
+   "fieldtype": "Date",
+   "label": "Partner Purchase Date"
+  },
+  {
+   "fieldname": "column_break_aahd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_invoice_no",
+   "fieldtype": "Data",
+   "label": "Partner Invoice No"
+  },
+  {
+   "fieldname": "column_break_zqbu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Link",
+   "label": "Partner Code",
+   "options": "Partner"
+  },
+  {
+   "fieldname": "column_break_edpw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "label": "Partner Name"
+  },
+  {
+   "fieldname": "customer_purchase_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Purchase Details"
+  },
+  {
+   "fieldname": "customer_purchase_date",
+   "fieldtype": "Date",
+   "label": "Customer Purchase Date"
+  },
+  {
+   "fieldname": "column_break_qyga",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_invoice_no",
+   "fieldtype": "Data",
+   "label": "Customer Invoice No"
+  },
+  {
+   "fieldname": "column_break_jrrh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_hmlu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warranty_tab",
+   "fieldtype": "Tab Break",
+   "label": "Warranty"
+  },
+  {
+   "fieldname": "manns_war",
+   "fieldtype": "Section Break",
+   "label": "Warranty Months & Status for Manns"
+  },
+  {
+   "fieldname": "mw_motor_months",
+   "fieldtype": "Int",
+   "label": "MW Motor Months"
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "mw_motor_status",
+   "fieldtype": "Select",
+   "label": "MW Motor Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mw_motor_start_date",
+   "fieldtype": "Date",
+   "label": "MW Motor Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jpap",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mw_controller_months",
+   "fieldtype": "Int",
+   "label": "MW Controller Months"
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "mw_controller_status",
+   "fieldtype": "Select",
+   "label": "MW Controller Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mw_controller_start_date",
+   "fieldtype": "Date",
+   "label": "MW Controller Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ptvr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "battery_warranty_months",
+   "fieldtype": "Int",
+   "label": "MW Battery Months"
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "mw_battery_status",
+   "fieldtype": "Select",
+   "label": "MW Battery Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mw_battery_start_date",
+   "fieldtype": "Date",
+   "label": "MW Battery Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_upko",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cus_war",
+   "fieldtype": "Section Break",
+   "label": "Warranty Months & Status for Customer"
+  },
+  {
+   "fieldname": "cw_motor_months",
+   "fieldtype": "Int",
+   "label": "CW Motor Months"
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "cw_motor_status",
+   "fieldtype": "Select",
+   "label": "CW Motor Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cw_motor_start_date",
+   "fieldtype": "Date",
+   "label": "CW Motor Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_dtpi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cw_controller_months",
+   "fieldtype": "Int",
+   "label": "CW Controller Months"
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "cw_controller_status",
+   "fieldtype": "Select",
+   "label": "CW Controller Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cw_controller_start_date",
+   "fieldtype": "Date",
+   "label": "CW Controller Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_aslj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cw_battery_months",
+   "fieldtype": "Int",
+   "label": "CW Battery Months"
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "cw_battery_status",
+   "fieldtype": "Select",
+   "label": "CW Battery Status",
+   "options": "\nNot Started\nIn Warranty\nOut Warranty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cw_battery_start_date",
+   "fieldtype": "Date",
+   "label": "CW Battery Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_kvup",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "match_code",
+   "fieldtype": "Data",
+   "label": "Match Code",
+   "permlevel": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "item_color",
+   "fieldtype": "Data",
+   "label": "Item Color",
+   "read_only": 1
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model",
+   "read_only": 1
+  },
+  {
+   "fieldname": "charger_no",
+   "fieldtype": "Data",
+   "label": "Charger No",
+   "unique": 1
+  },
+  {
+   "fieldname": "item_sub_category",
+   "fieldtype": "Data",
+   "label": "Item Sub Category",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pricing_tab",
+   "fieldtype": "Tab Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "manns_pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Manns Pricing"
+  },
+  {
+   "fieldname": "manns_price_pre_gst",
+   "fieldtype": "Currency",
+   "label": "Manns Price Pre GST",
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_dgrt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "manns_gst",
+   "fieldtype": "Currency",
+   "label": "Manns GST",
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_hxhi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "manns_price_with_gst",
+   "fieldtype": "Currency",
+   "label": "Manns Price With GST",
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Partner Pricing"
+  },
+  {
+   "fieldname": "partner_price_pre_gst",
+   "fieldtype": "Currency",
+   "label": "Partner Price Pre GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_giva",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ecvs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_gst",
+   "fieldtype": "Currency",
+   "label": "Partner GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_price_with_gst",
+   "fieldtype": "Currency",
+   "label": "Partner Price With GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Pricing"
+  },
+  {
+   "fieldname": "customer_price_pre_gst",
+   "fieldtype": "Currency",
+   "label": "Customer Price Pre GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_iwtw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_gst",
+   "fieldtype": "Currency",
+   "label": "Customer GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_eill",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_price_with_gst",
+   "fieldtype": "Currency",
+   "label": "Customer Price With GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mrp_section",
+   "fieldtype": "Section Break",
+   "label": "MRP"
+  },
+  {
+   "fieldname": "column_break_jigu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ovhc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mrp",
+   "fieldtype": "Currency",
+   "label": "MRP",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gst_slab",
+   "fieldtype": "Percent",
+   "label": "GST Slab",
+   "precision": "1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_weight",
+   "fieldtype": "Float",
+   "label": "Item Weight",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hsn_code",
+   "fieldtype": "Data",
+   "label": "HSN Code",
+   "read_only": 1
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-06-22 16:07:36.724355",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Item Serial",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

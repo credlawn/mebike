@@ -30,6 +30,8 @@
   {
    "fieldname": "partner_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Partner Name",
    "read_only": 1
   },
@@ -41,6 +43,7 @@
    "default": "0",
    "fieldname": "total_credit_limit",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Total Credit Limit",
    "precision": "2",
    "read_only": 1
@@ -49,6 +52,7 @@
    "default": "0",
    "fieldname": "current_balance",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Current Balance",
    "precision": "2",
    "read_only": 1
@@ -57,6 +61,7 @@
    "default": "0",
    "fieldname": "available_credit_limit",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Available Credit Limit",
    "precision": "2",
    "read_only": 1
@@ -81,7 +86,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-25 02:24:24.244433",
+ "modified": "2025-06-27 16:42:05.016802",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Partner Books",
@@ -100,7 +105,7 @@
    "write": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "name",
  "sort_order": "DESC",
  "states": []
 }

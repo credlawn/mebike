@@ -24,6 +24,8 @@ def create_invoice_from_purchase(purchase_doc_name):
         invoice_item.quantity = item.quantity
         invoice_item.rate = item.rate
         invoice_item.amount = item.amount
+        invoice_item.item_mrp = item.item_mrp
+        invoice_item.hsn_code = item.hsn_code
 
     # Insert the invoice into the database
     invoice_doc.insert()  

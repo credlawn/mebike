@@ -1,0 +1,113 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-07 19:42:05.931478",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "partner_code",
+  "column_break_gsdt",
+  "partner_name",
+  "column_break_teaj",
+  "section_break_oako",
+  "transaction_date",
+  "column_break_rwrx",
+  "transaction_amount",
+  "column_break_lcas",
+  "utr_no",
+  "section_break_cjws",
+  "payment_receipt",
+  "column_break_rtnr",
+  "column_break_oluu"
+ ],
+ "fields": [
+  {
+   "fieldname": "partner_code",
+   "fieldtype": "Link",
+   "label": "Partner Code",
+   "options": "Partner"
+  },
+  {
+   "fieldname": "column_break_gsdt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "label": "Partner Name"
+  },
+  {
+   "fieldname": "transaction_date",
+   "fieldtype": "Date",
+   "label": "Transaction Date"
+  },
+  {
+   "fieldname": "transaction_amount",
+   "fieldtype": "Currency",
+   "label": "Transaction Amount",
+   "precision": "2"
+  },
+  {
+   "fieldname": "utr_no",
+   "fieldtype": "Data",
+   "label": "UTR No"
+  },
+  {
+   "fieldname": "payment_receipt",
+   "fieldtype": "Attach",
+   "label": "Payment Receipt"
+  },
+  {
+   "fieldname": "column_break_teaj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_oako",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_rwrx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_lcas",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_cjws",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_rtnr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_oluu",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-07 20:06:38.287340",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Payment Receipt",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

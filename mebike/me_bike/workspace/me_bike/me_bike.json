@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"YpGCeLfign\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Welcome Partner !</b></span>\",\"col\":12}},{\"id\":\"oFB4l28FMU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"HYjb0Zws0c\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order\",\"col\":3}},{\"id\":\"HF1xAqEkOs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Manhish Bhhai Item\",\"col\":3}},{\"id\":\"JmuoNlGYe0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Purchase Order\",\"col\":3}},{\"id\":\"_lBsPZNOzQ\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"YncTx6WFFO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Billing\",\"col\":3}},{\"id\":\"wWksm2eWsa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Billing\",\"col\":3}},{\"id\":\"WUflLhHqP1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Payment Entry\",\"col\":3}}]",
+ "content": "[{\"id\":\"YpGCeLfign\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Welcome Partner !</b></span>\",\"col\":12}},{\"id\":\"oFB4l28FMU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"HYjb0Zws0c\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order\",\"col\":3}},{\"id\":\"MvK-OOa5DV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"cnTxpCm66v\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Books\",\"col\":3}},{\"id\":\"OkWkJwleyp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse\",\"col\":3}},{\"id\":\"_lBsPZNOzQ\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"YncTx6WFFO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer Invoice\",\"col\":3}},{\"id\":\"wWksm2eWsa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Customer Invoice\",\"col\":3}},{\"id\":\"JmuoNlGYe0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Purchase Order\",\"col\":3}}]",
  "creation": "2025-03-15 18:50:00.309011",
  "custom_blocks": [],
  "docstatus": 0,
@@ -92,7 +92,7 @@
    "type": "Link"
   }
  ],
- "modified": "2025-03-28 12:34:52.916534",
+ "modified": "2025-06-26 06:23:36.021642",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Me Bike",
@@ -108,17 +108,51 @@
   {
    "color": "Green",
    "doc_view": "List",
-   "format": "{} Order",
+   "label": "Books",
+   "link_to": "Partner Books",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{}",
+   "label": "Customer Invoice",
+   "link_to": "Customer Billing",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{}",
    "label": "Purchase Order",
    "link_to": "Purchase",
-   "stats_filter": "[[\"Purchase\",\"purchase_order_date\",\"Timespan\",\"this month\",false]]",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Purchase Invoice",
+   "link_to": "Invoice",
+   "stats_filter": "[[\"Invoice\",\"docstatus\",\"!=\",\"0\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{}",
+   "label": "Warehouse",
+   "link_to": "Warehouse",
+   "stats_filter": "[]",
    "type": "DocType"
   },
   {
    "color": "Grey",
    "doc_view": "New",
-   "label": "New Payment Entry",
-   "link_to": "Received Payment",
+   "label": "New Customer Invoice",
+   "link_to": "Customer Billing",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -127,30 +161,6 @@
    "doc_view": "New",
    "label": "New Purchase Order",
    "link_to": "Purchase",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Manhish Bhhai Item",
-   "link_to": "Item",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Billing",
-   "link_to": "Customer Billing",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "New",
-   "label": "New Billing",
-   "link_to": "Customer Billing",
    "stats_filter": "[]",
    "type": "DocType"
   }

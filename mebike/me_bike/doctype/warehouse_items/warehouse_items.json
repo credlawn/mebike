@@ -7,17 +7,18 @@
  "engine": "InnoDB",
  "field_order": [
   "item_code",
+  "item_name",
+  "quantity",
+  "rate",
+  "amount",
   "item_weight",
   "item_gst",
   "column_break_tqpc",
-  "quantity",
-  "rate",
-  "column_break_xdte",
-  "item_name",
-  "amount"
+  "column_break_xdte"
  ],
  "fields": [
   {
+   "columns": 1,
    "fieldname": "item_code",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -47,13 +48,17 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "fieldname": "quantity",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Quantity"
   },
   {
+   "columns": 2,
    "fieldname": "rate",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Rate",
    "precision": "2",
    "read_only": 1
@@ -63,15 +68,19 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 3,
    "fieldname": "item_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Item Name",
    "read_only": 1
   },
   {
    "bold": 1,
+   "columns": 2,
    "fieldname": "amount",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Amount",
    "precision": "2",
    "read_only": 1
@@ -80,7 +89,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-03-25 16:09:13.862121",
+ "modified": "2025-06-26 14:16:22.427496",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Warehouse Items",

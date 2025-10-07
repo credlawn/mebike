@@ -5,38 +5,46 @@
  "engine": "InnoDB",
  "field_order": [
   "item_stock_section",
-  "item_current_stock",
-  "column_break_jxlw",
   "minimum_quantity",
-  "column_break_djxn",
+  "column_break_jxlw",
   "maximum_quantity",
+  "column_break_djxn",
+  "item_current_stock",
   "column_break_jslz",
   "status",
+  "variant_created",
   "item_details_section",
   "model",
-  "hsn_code",
-  "item_weight",
-  "column_break_awtm",
-  "item_color",
-  "item_mrp",
-  "column_break_ndcz",
-  "item_category",
-  "tbi_gst_slab",
-  "column_break_ppfv",
   "item_name",
+  "hsn_code",
+  "column_break_awtm",
+  "item_category",
+  "item_mrp",
+  "item_weight",
+  "column_break_ndcz",
+  "item_sub_category",
+  "tbi_gst_slab",
+  "match_code",
+  "column_break_ppfv",
+  "item_color",
   "partner_discount",
+  "customer_discount_per",
   "item_price_section",
-  "tbi_price_before_gst",
-  "partner_price_before_gst",
-  "column_break_ftxh",
-  "tbi_gst",
-  "partner_gst",
-  "column_break_nitg",
   "tbi_price_with_gst",
   "partner_price_with_gst",
-  "column_break_xqoa",
+  "customer_price_with_gst",
+  "column_break_ftxh",
   "tbi_margin",
-  "partner_margin"
+  "partner_margin",
+  "customer_discount",
+  "column_break_nitg",
+  "tbi_price_before_gst",
+  "partner_price_before_gst",
+  "customer_price_pre_gst",
+  "column_break_xqoa",
+  "tbi_gst",
+  "partner_gst",
+  "customer_gst"
  ],
  "fields": [
   {
@@ -54,7 +62,8 @@
   {
    "fieldname": "model",
    "fieldtype": "Data",
-   "label": "Model"
+   "label": "Model",
+   "reqd": 1
   },
   {
    "fieldname": "item_name",
@@ -62,20 +71,23 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Item Name",
-   "read_only": 1
+   "read_only": 1,
+   "unique": 1
   },
   {
    "fieldname": "item_color",
    "fieldtype": "Autocomplete",
    "in_list_view": 1,
-   "label": "Item Color"
+   "label": "Item Variant",
+   "reqd": 1
   },
   {
    "fieldname": "item_category",
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Item Category ",
-   "options": "\nVehicle\nBattery\nMotor\nAccessories"
+   "options": "\nVehicle\nBattery\nMotor\nCharger\nAccessories",
+   "reqd": 1
   },
   {
    "fieldname": "item_details_section",
@@ -92,7 +104,8 @@
    "fieldtype": "Currency",
    "label": "TBI Price Exc GST",
    "permlevel": 1,
-   "precision": "2"
+   "precision": "2",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_nitg",
@@ -108,7 +121,7 @@
    "label": "TBI Price Inc GST",
    "permlevel": 1,
    "precision": "2",
-   "read_only": 1
+   "reqd": 1
   },
   {
    "fieldname": "column_break_ftxh",
@@ -126,8 +139,8 @@
    "fieldname": "tbi_gst_slab",
    "fieldtype": "Percent",
    "label": "GST Slab",
-   "permlevel": 1,
-   "precision": "1"
+   "precision": "1",
+   "reqd": 1
   },
   {
    "fieldname": "partner_price_before_gst",
@@ -156,7 +169,6 @@
    "fieldname": "partner_margin",
    "fieldtype": "Currency",
    "label": "Partner Margin",
-   "permlevel": 1,
    "precision": "2",
    "read_only": 1
   },
@@ -174,38 +186,46 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Item MRP",
-   "precision": "2"
+   "precision": "2",
+   "reqd": 1
   },
   {
    "fieldname": "partner_discount",
    "fieldtype": "Percent",
-   "label": "Partner Discount",
+   "label": "Partner Discount in %",
    "permlevel": 1,
-   "precision": "1"
+   "precision": "1",
+   "reqd": 1
   },
   {
    "fieldname": "hsn_code",
    "fieldtype": "Data",
-   "label": "HSN Code"
+   "label": "HSN Code",
+   "reqd": 1
   },
   {
    "default": "0",
    "fieldname": "item_weight",
    "fieldtype": "Float",
    "label": "Item Weight",
-   "precision": "2"
+   "precision": "2",
+   "reqd": 1
   },
   {
    "fieldname": "item_stock_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Item Stock"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "item_current_stock",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Item Current Stock",
-   "non_negative": 1
+   "non_negative": 1,
+   "permlevel": 1,
+   "read_only": 1
   },
   {
    "fieldname": "column_break_jxlw",
@@ -223,6 +243,7 @@
    "default": "Out of Stock",
    "fieldname": "status",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Status",
    "options": "\nIn Stock\nOut of Stock",
    "read_only": 1
@@ -231,19 +252,80 @@
    "default": "1",
    "fieldname": "minimum_quantity",
    "fieldtype": "Int",
-   "label": "Minimum Quantity"
+   "label": "Minimum Quantity",
+   "permlevel": 1
   },
   {
    "default": "100",
    "fieldname": "maximum_quantity",
    "fieldtype": "Int",
-   "label": "Maximum Quantity"
+   "hidden": 1,
+   "label": "Maximum Quantity",
+   "permlevel": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "variant_created",
+   "fieldtype": "Data",
+   "label": "Variant Created",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_sub_category",
+   "fieldtype": "Select",
+   "label": "Item Sub Category",
+   "options": "\nScooter\nBike\nCharger\nMotor\nBattery\nController\nDisplay\nAccessories",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_price_with_gst",
+   "fieldtype": "Currency",
+   "label": "Customer Price With GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_discount",
+   "fieldtype": "Currency",
+   "label": "Customer Discount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_price_pre_gst",
+   "fieldtype": "Currency",
+   "label": "Customer Price Pre GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_gst",
+   "fieldtype": "Currency",
+   "label": "Customer GST",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_discount_per",
+   "fieldtype": "Percent",
+   "label": "Customer Discount in %",
+   "permlevel": 1,
+   "precision": "1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "match_code",
+   "fieldtype": "Int",
+   "label": "Match Code",
+   "permlevel": 1,
+   "read_only": 1,
+   "unique": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-27 16:49:34.534709",
+ "modified": "2025-07-01 04:16:33.958795",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Item",

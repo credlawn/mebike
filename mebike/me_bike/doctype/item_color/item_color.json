@@ -5,19 +5,54 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "item_color"
+  "variant_for",
+  "item_color",
+  "column_break_gido",
+  "color_status",
+  "column_break_ivak",
+  "column_break_eahr"
  ],
  "fields": [
   {
    "fieldname": "item_color",
    "fieldtype": "Data",
-   "label": "Item Color",
+   "label": "Variant Name",
    "unique": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "color_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Variant Status",
+   "options": "Active\nInactive"
+  },
+  {
+   "fieldname": "column_break_gido",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ivak",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_eahr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "variant_for",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Variant For",
+   "options": "\nVehicle\nBattery\nMotor\nCharger\nAccessories"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-07 14:22:26.059459",
+ "modified": "2025-06-27 17:02:15.038643",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Item Color",

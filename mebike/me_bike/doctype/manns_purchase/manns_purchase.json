@@ -19,12 +19,14 @@
   "section_break_vidg",
   "total_quantity",
   "total_weight",
+  "match_count",
   "column_break_epqx",
   "column_break_pjxq",
   "sub_total",
   "total_taxes_and_charges",
   "grand_total",
-  "rounded_total"
+  "rounded_total",
+  "amended_from"
  ],
  "fields": [
   {
@@ -39,9 +41,8 @@
   },
   {
    "fieldname": "invoice_no",
-   "fieldtype": "Link",
-   "label": "Invoice No",
-   "options": "Invoice"
+   "fieldtype": "Data",
+   "label": "Invoice No"
   },
   {
    "fieldname": "column_break_meoy",
@@ -143,12 +144,28 @@
    "fieldname": "attach_item_excel",
    "fieldtype": "Attach",
    "label": "Attach Item Excel"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Manns Purchase",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "match_count",
+   "fieldtype": "Int",
+   "label": "Match Count"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-04-05 19:41:46.593361",
+ "modified": "2025-04-13 08:32:58.329889",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Manns Purchase",

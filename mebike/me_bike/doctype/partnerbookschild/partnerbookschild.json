@@ -7,17 +7,22 @@
  "field_order": [
   "transaction_date",
   "transaction_type",
+  "transaction_code",
   "column_break_elyu",
   "partner_code",
   "transaction_amount",
+  "transaction_mode",
   "column_break_neyc",
   "partner_name",
-  "remarks"
+  "remarks",
+  "ref_no"
  ],
  "fields": [
   {
+   "columns": 2,
    "fieldname": "transaction_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Transaction Date"
   },
   {
@@ -40,28 +45,49 @@
    "label": "Partner Name"
   },
   {
+   "columns": 1,
    "fieldname": "transaction_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Transaction Type",
    "options": "\nCredit\nDebit"
   },
   {
+   "columns": 2,
    "default": "0",
    "fieldname": "transaction_amount",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Transaction Amount",
    "precision": "2"
   },
   {
+   "columns": 3,
    "fieldname": "remarks",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Remarks"
+  },
+  {
+   "fieldname": "transaction_code",
+   "fieldtype": "Data",
+   "label": "Transaction Code"
+  },
+  {
+   "fieldname": "transaction_mode",
+   "fieldtype": "Data",
+   "label": "Transaction Mode"
+  },
+  {
+   "fieldname": "ref_no",
+   "fieldtype": "Data",
+   "label": "Ref No"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-03-25 01:26:05.480351",
+ "modified": "2025-06-30 16:58:18.555882",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Partnerbookschild",

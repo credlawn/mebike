@@ -1,5 +1,19 @@
 frappe.ui.form.on('Partner Books', {
     refresh: function(frm) {
+        cur_frm.disable_form();
+
+        const grid = frm.fields_dict.transaction_history.grid;
+        
+        grid.wrapper.find('.grid-row').css('pointer-events', 'none');
+        
+        grid.wrapper.find('.btn-open-row').hide();
+        const disableGear = () => grid.wrapper.find('use[href="#icon-setting-gear"]').closest('a').hide().off('click');
+        grid.wrapper.find('.col.grid-static-col.d-flex.justify-content-center').css({'pointer-events': 'none', 'cursor': 'default'}).off('click');
+
+        setTimeout(disableGear, 0);
+
+
+
         if (frm.doc.transaction_history) {
             frm.doc.transaction_history.sort(function(a, b) {
                 return new Date(b.transaction_date) - new Date(a.transaction_date);

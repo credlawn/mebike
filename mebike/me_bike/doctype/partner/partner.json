@@ -11,21 +11,39 @@
   "column_break_vcou",
   "business_name",
   "contact_no",
+  "business_closure_date",
+  "status",
   "column_break_jzji",
   "business_start_date",
   "email",
+  "mapped_dealer",
   "business_location_section",
   "business_address",
   "column_break_svya",
   "landmark",
   "state",
-  "state_code",
   "column_break_oile",
   "city",
   "pincode",
+  "section_break_sgzm",
+  "has_different_shipping_address",
+  "column_break_zjgm",
+  "column_break_ysaa",
+  "shipping_location_section",
+  "s_business_name",
+  "shipping_address",
+  "column_break_icwn",
+  "s_landmark",
+  "s_state",
+  "s_gst_no",
+  "column_break_yudm",
+  "s_city",
+  "s_pincode",
+  "s_state_code",
   "financial_details_section",
   "pan_no",
   "bank_ac_no",
+  "state_code",
   "column_break_qjpq",
   "gst_no",
   "ifsc_code",
@@ -37,9 +55,11 @@
   {
    "fieldname": "partner_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Partner Type",
    "options": "\nProprietor\nPartnership\nCompany",
-   "placeholder": "Proprietor / Partnership / Company"
+   "placeholder": "Proprietor / Partnership / Company",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_vcou",
@@ -48,7 +68,9 @@
   {
    "fieldname": "business_name",
    "fieldtype": "Data",
-   "label": "Business Name"
+   "in_list_view": 1,
+   "label": "Business Name",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_jzji",
@@ -57,22 +79,30 @@
   {
    "fieldname": "contact_no",
    "fieldtype": "Data",
-   "label": "Contact No"
+   "in_list_view": 1,
+   "label": "Contact No",
+   "reqd": 1
   },
   {
+   "default": "Today",
    "fieldname": "business_start_date",
    "fieldtype": "Date",
-   "label": "Business Start Date"
+   "label": "Business Start Date",
+   "reqd": 1
   },
   {
    "fieldname": "key_person_name",
    "fieldtype": "Data",
-   "label": "Key Person Name"
+   "in_list_view": 1,
+   "label": "Key Person Name",
+   "reqd": 1
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "Email",
+   "reqd": 1,
+   "set_only_once": 1
   },
   {
    "fieldname": "basic_details_section",
@@ -87,7 +117,8 @@
   {
    "fieldname": "business_address",
    "fieldtype": "Small Text",
-   "label": "Business Address"
+   "label": "Business Address",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_svya",
@@ -96,12 +127,15 @@
   {
    "fieldname": "landmark",
    "fieldtype": "Data",
-   "label": "Landmark"
+   "label": "Landmark",
+   "reqd": 1
   },
   {
    "fieldname": "state",
-   "fieldtype": "Data",
-   "label": "State"
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State List",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_oile",
@@ -110,17 +144,20 @@
   {
    "fieldname": "city",
    "fieldtype": "Data",
-   "label": "City"
+   "label": "City",
+   "reqd": 1
   },
   {
    "fieldname": "pincode",
    "fieldtype": "Data",
-   "label": "Pincode"
+   "label": "Pincode",
+   "reqd": 1
   },
   {
    "fieldname": "pan_no",
    "fieldtype": "Data",
-   "label": "PAN No"
+   "label": "PAN No",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_qjpq",
@@ -129,7 +166,8 @@
   {
    "fieldname": "gst_no",
    "fieldtype": "Data",
-   "label": "GST No"
+   "label": "GST No",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_awmr",
@@ -139,10 +177,10 @@
    "fieldname": "gst_filing_frequency",
    "fieldtype": "Select",
    "label": "GST Filing Frequency",
-   "options": "\nMonthly\nQuarterly\nComposite"
+   "options": "\nMonthly\nQuarterly\nComposite",
+   "reqd": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "financial_details_section",
    "fieldtype": "Section Break",
    "label": "Financial Details"
@@ -166,20 +204,117 @@
   {
    "fieldname": "state_code",
    "fieldtype": "Data",
-   "label": "State Code"
+   "label": "State Code",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "credit_limit",
    "fieldtype": "Currency",
    "label": "Credit Limit",
-   "precision": "2"
+   "permlevel": 1,
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "Inactive",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Partner Status",
+   "options": "\nActive\nInactive",
+   "read_only": 1
+  },
+  {
+   "fieldname": "business_closure_date",
+   "fieldtype": "Date",
+   "label": "Business Closure Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mapped_dealer",
+   "fieldtype": "Link",
+   "label": "Mapped Dealer",
+   "options": "Partner"
+  },
+  {
+   "fieldname": "shipping_location_section",
+   "fieldtype": "Section Break",
+   "label": "Shipping Location"
+  },
+  {
+   "fieldname": "shipping_address",
+   "fieldtype": "Small Text",
+   "label": "Shipping Address"
+  },
+  {
+   "fieldname": "column_break_icwn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "s_landmark",
+   "fieldtype": "Data",
+   "label": "Landmark"
+  },
+  {
+   "fieldname": "s_state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State List"
+  },
+  {
+   "fieldname": "column_break_yudm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "s_city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "s_pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "has_different_shipping_address",
+   "fieldtype": "Check",
+   "label": "Has Different Shipping Address"
+  },
+  {
+   "fieldname": "section_break_sgzm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_zjgm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ysaa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "s_business_name",
+   "fieldtype": "Data",
+   "label": "Business Name"
+  },
+  {
+   "fieldname": "s_state_code",
+   "fieldtype": "Data",
+   "label": "State Code"
+  },
+  {
+   "fieldname": "s_gst_no",
+   "fieldtype": "Data",
+   "label": "GST No"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-25 11:42:55.548716",
+ "modified": "2025-07-01 03:05:58.318398",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Partner",
@@ -211,7 +346,9 @@
    "write": 1
   }
  ],
- "sort_field": "modified",
+ "show_title_field_in_link": 1,
+ "sort_field": "name",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "business_name"
 }

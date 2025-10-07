@@ -3,6 +3,7 @@
  "allow_rename": 1,
  "creation": "2025-03-15 13:10:09.973437",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "item_code",
@@ -11,11 +12,15 @@
   "rate",
   "amount",
   "item_weight",
-  "item_gst"
+  "item_gst",
+  "hsn_code",
+  "description",
+  "item_mrp",
+  "item_gst_slab"
  ],
  "fields": [
   {
-   "columns": 2,
+   "columns": 1,
    "fieldname": "item_code",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -24,7 +29,7 @@
    "reqd": 1
   },
   {
-   "columns": 3,
+   "columns": 4,
    "fieldname": "item_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -77,12 +82,33 @@
    "label": "Item Weight",
    "precision": "2",
    "read_only": 1
+  },
+  {
+   "fieldname": "hsn_code",
+   "fieldtype": "Data",
+   "label": "HSN Code"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  },
+  {
+   "fieldname": "item_mrp",
+   "fieldtype": "Currency",
+   "label": "Item MRP",
+   "precision": "2"
+  },
+  {
+   "fieldname": "item_gst_slab",
+   "fieldtype": "Data",
+   "label": "GST Slab"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-04-06 01:43:41.293128",
+ "modified": "2025-07-01 04:00:44.981368",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Items",

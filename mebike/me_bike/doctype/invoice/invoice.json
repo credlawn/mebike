@@ -21,16 +21,20 @@
   "items",
   "section_break_olzq",
   "billed_quantity",
-  "grand_total_amount",
+  "extra_discount_per",
   "total_weight",
   "column_break_ihcw",
   "invoice_amount",
-  "rounded_total_amount",
+  "extra_discount",
+  "gst_slab",
   "column_break_cnkr",
+  "taxable_amount",
   "total_gst_amount",
   "igst_amount",
   "sgst_amount",
   "cgst_amount",
+  "grand_total_amount",
+  "rounded_total_amount",
   "billing_details_section",
   "party_name",
   "billed_to_address",
@@ -39,7 +43,21 @@
   "shipped_to_address",
   "column_break_cpsi",
   "state",
-  "state_code"
+  "state_code",
+  "city",
+  "pincode",
+  "landmark",
+  "section_break_kblz",
+  "company_name",
+  "company_address",
+  "column_break_ppie",
+  "company_gst_no",
+  "company_state",
+  "column_break_ybay",
+  "company_city",
+  "company_pincode",
+  "company_state_code",
+  "amended_from"
  ],
  "fields": [
   {
@@ -58,8 +76,7 @@
    "default": "Today",
    "fieldname": "invoice_date",
    "fieldtype": "Date",
-   "label": "Invoice Date",
-   "read_only": 1
+   "label": "Invoice Date"
   },
   {
    "fieldname": "billed_quantity",
@@ -135,18 +152,16 @@
    "label": "Shipped To Address"
   },
   {
-   "default": "By Road",
    "fieldname": "transport",
    "fieldtype": "Data",
    "label": "Transport",
-   "read_only": 1
+   "permlevel": 1
   },
   {
-   "default": "DL01CN0876",
    "fieldname": "vehicle_no",
    "fieldtype": "Data",
    "label": "Vehicle No",
-   "read_only": 1
+   "permlevel": 1
   },
   {
    "default": "0",
@@ -256,12 +271,123 @@
    "label": "Status",
    "options": "\nNot Paid\nPartial Paid\nPaid",
    "read_only": 1
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "landmark",
+   "fieldtype": "Data",
+   "label": "Landmark"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pin Code"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_kblz",
+   "fieldtype": "Section Break",
+   "label": "Company Details"
+  },
+  {
+   "default": "Manns TBI Limited",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "default": "702, Rashmi Regency 2, Achol, Nallasopara East, Vasai Virar",
+   "fieldname": "company_address",
+   "fieldtype": "Small Text",
+   "label": "Company Address"
+  },
+  {
+   "fieldname": "column_break_ppie",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ybay",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "27AAQCM1729F1ZA",
+   "fieldname": "company_gst_no",
+   "fieldtype": "Data",
+   "label": "Company GSITN"
+  },
+  {
+   "default": "Maharashtra",
+   "fieldname": "company_state",
+   "fieldtype": "Link",
+   "label": "Company State",
+   "options": "State List"
+  },
+  {
+   "default": "Palghar",
+   "fieldname": "company_city",
+   "fieldtype": "Data",
+   "label": "Company City"
+  },
+  {
+   "default": "401209",
+   "fieldname": "company_pincode",
+   "fieldtype": "Data",
+   "label": "Company Pin Code"
+  },
+  {
+   "default": "27",
+   "fieldname": "company_state_code",
+   "fieldtype": "Data",
+   "label": "Company State Code"
+  },
+  {
+   "default": "5",
+   "fieldname": "gst_slab",
+   "fieldtype": "Float",
+   "label": "GST Slab",
+   "precision": "2"
+  },
+  {
+   "fieldname": "extra_discount_per",
+   "fieldtype": "Percent",
+   "label": "Extra Discount Per",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "extra_discount",
+   "fieldtype": "Currency",
+   "label": "Extra Discount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "taxable_amount",
+   "fieldtype": "Currency",
+   "label": "Taxable Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Invoice",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-04-06 01:40:26.959745",
+ "modified": "2025-08-26 13:03:18.163996",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Invoice",

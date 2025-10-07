@@ -7,6 +7,7 @@ class PartnerBooks(Document):
      
     def on_update(self):
         self.calculate_available_credit_limit()
+        self.set_partner_books_owner()
         self.reload()
     
     def autoname(self):
@@ -17,4 +18,10 @@ class PartnerBooks(Document):
         available_credit_limit = self.total_credit_limit + self.current_balance
         frappe.db.set_value("Partner Books", self.name, "available_credit_limit", available_credit_limit)
         frappe.db.commit()
+        
+    def set_partner_books_owner(self):
+        email = frappe.db.get_value('Partner', self.partner_code, 'email')
+        if email:
+            frappe.db.set_value('Partner Books', self.name, 'owner', email)
+        
     

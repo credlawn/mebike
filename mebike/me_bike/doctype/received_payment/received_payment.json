@@ -7,6 +7,7 @@
   "payment_details_section",
   "transaction_date",
   "transaction_amount",
+  "transaction_mode",
   "column_break_kinm",
   "partner_code",
   "remarks",
@@ -69,12 +70,19 @@
    "in_list_view": 1,
    "label": "Remarks",
    "reqd": 1
+  },
+  {
+   "fieldname": "transaction_mode",
+   "fieldtype": "Select",
+   "label": "Transaction Mode",
+   "options": "\nFund Transfer\nCredit Note",
+   "reqd": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-25 12:20:38.523714",
+ "modified": "2025-06-16 18:18:44.852051",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Received Payment",

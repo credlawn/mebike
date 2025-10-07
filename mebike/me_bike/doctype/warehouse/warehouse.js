@@ -8,6 +8,19 @@ frappe.ui.form.on('Warehouse', {
             calculate_amount(frm, cdt, cdn);
             update_totals(frm);
         };
+        cur_frm.disable_form();
+
+        if (frm.doc.warehouse_items) {
+            frm.doc.warehouse_items.sort(function(a, b) {
+                return (b.amount || 0) - (a.amount || 0);
+            });
+
+            frm.doc.warehouse_items.forEach(function(item, index) {
+                item.idx = index + 1;
+            });
+
+            frm.refresh_field('warehouse_items');
+        }
     }
 });
 

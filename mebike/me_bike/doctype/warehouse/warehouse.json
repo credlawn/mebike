@@ -15,6 +15,7 @@
   "column_break_tkmn",
   "warehouse_type",
   "mobile_no",
+  "email",
   "item_wise_inventory_section",
   "warehouse_items",
   "section_break_onsm",
@@ -29,7 +30,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Warehouse Name"
+   "label": "Warehouse Name",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_rcep",
@@ -39,7 +41,8 @@
    "fieldname": "warehouse_type",
    "fieldtype": "Select",
    "label": "Warehouse Type",
-   "options": "\nCompany\nPartner"
+   "options": "\nCompany\nPartner",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_tkmn",
@@ -50,17 +53,20 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Warehouse City"
+   "label": "Warehouse City",
+   "read_only": 1
   },
   {
    "fieldname": "contact_person",
    "fieldtype": "Data",
-   "label": "Contact Person"
+   "label": "Contact Person",
+   "read_only": 1
   },
   {
    "fieldname": "mobile_no",
    "fieldtype": "Data",
-   "label": "Mobile No"
+   "label": "Mobile No",
+   "read_only": 1
   },
   {
    "fieldname": "warehouse_details_section",
@@ -70,18 +76,21 @@
   {
    "fieldname": "warehouse_code",
    "fieldtype": "Data",
-   "label": "Warehouse Code"
+   "label": "Warehouse Code",
+   "read_only": 1
   },
   {
    "fieldname": "partner_code",
    "fieldtype": "Link",
    "label": "Partner Code",
-   "options": "Partner"
+   "options": "Partner",
+   "read_only": 1
   },
   {
    "fieldname": "partner_name",
    "fieldtype": "Data",
-   "label": "Partner Name"
+   "label": "Partner Name",
+   "read_only": 1
   },
   {
    "fieldname": "item_wise_inventory_section",
@@ -117,23 +126,29 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 5,
    "fieldname": "warehouse_items",
    "fieldtype": "Table",
    "options": "Warehouse Items",
+   "read_only": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
    "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-25 16:05:52.982064",
+ "modified": "2025-07-01 15:19:47.861566",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Warehouse",
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
    "delete": 1,
    "email": 1,
    "export": 1,
@@ -141,11 +156,11 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
-   "share": 1,
-   "write": 1
+   "share": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "name",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "warehouse_name"
 }
