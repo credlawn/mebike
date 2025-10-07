@@ -337,6 +337,8 @@ function fetchItemDetailsAndCalculate(frm, cdt, cdn) {
             // Trigger calculations for the new row
             update_amount(cdt, cdn);
             update_sub_total(frm);
+            update_pre_discount_amount_as_per_dp(frm);
+            update_total_discount(frm);
             update_total_quantity(frm);
             update_partner_gst(frm);
             update_total_weight(frm);
@@ -364,6 +366,8 @@ function fetchItemDetailsAndCalculate(frm, cdt, cdn) {
     // Trigger calculations for the new row
     update_amount(cdt, cdn);
     update_sub_total(frm);
+    update_pre_discount_amount_as_per_dp(frm);
+    update_total_discount(frm);
     update_total_quantity(frm);
     update_partner_gst(frm);
     update_total_weight(frm);
