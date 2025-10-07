@@ -16,6 +16,8 @@ class Purchase(Document):
         self.recalculate_totals()
 
     def recalculate_totals(self):
+        total_pre_discount_with_gst = 0
+        total_discount_with_gst = 0
         total_amount = 0
         total_gst = 0
         for item in self.get("items"):
@@ -24,17 +26,23 @@ class Purchase(Document):
             discount_val = item.discount or 0
             rate = item.rate or 0
             quantity = item.quantity or 0
-            
-            discounted_rate = rate - (discount_val / divisor)
-            amount = discounted_rate * quantity
-            
+
+            row_pre_discount = rate * quantity
+            row_pre_discount_with_gst = row_pre_discount * divisor
+            total_pre_discount_with_gst += row_pre_discount_with_gst
+
+            row_discount_with_gst = discount_val * quantity
+            total_discount_with_gst += row_discount_with_gst
+
+            amount = row_pre_discount - (row_discount_with_gst / divisor)
             item.amount = amount
-            
             total_amount += amount
-            
+
             gst_fraction = gst_slab / 100
             total_gst += amount * gst_fraction
 
+        self.amount_as_per_dp = round(total_pre_discount_with_gst)
+        self.total_discount = round(total_discount_with_gst)
         self.sub_total = total_amount
         self.total_taxes_and_charges = total_gst
         self.grand_total = self.sub_total + self.total_taxes_and_charges

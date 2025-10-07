@@ -378,6 +378,8 @@ frappe.ui.form.on('Items', {
     quantity: function(frm, cdt, cdn) {
         update_amount(cdt, cdn);
         update_sub_total(frm);
+        update_pre_discount_amount_as_per_dp(frm);
+        update_total_discount(frm);
         update_total_quantity(frm);
         update_partner_gst(frm);
         update_total_weight(frm);
@@ -388,6 +390,8 @@ frappe.ui.form.on('Items', {
     rate: function(frm, cdt, cdn) {
         update_amount(cdt, cdn);
         update_sub_total(frm);
+        update_pre_discount_amount_as_per_dp(frm);
+        update_total_discount(frm);
         update_total_quantity(frm);
         update_partner_gst(frm);
         update_total_weight(frm);
@@ -398,6 +402,8 @@ frappe.ui.form.on('Items', {
     discount: function(frm, cdt, cdn) {
         update_amount(cdt, cdn);
         update_sub_total(frm);
+        update_pre_discount_amount_as_per_dp(frm);
+        update_total_discount(frm);
         update_partner_gst(frm);
         update_grand_total(frm);
         update_rounded_total(frm);
@@ -406,6 +412,8 @@ frappe.ui.form.on('Items', {
     item_gst_slab: function(frm, cdt, cdn) {
         update_amount(cdt, cdn);
         update_sub_total(frm);
+        update_pre_discount_amount_as_per_dp(frm);
+        update_total_discount(frm);
         update_partner_gst(frm);
         update_grand_total(frm);
         update_rounded_total(frm);
@@ -422,6 +430,25 @@ function update_amount(cdt, cdn) {
     var discounted_rate = rate - (discount_val / divisor);
     var amount = discounted_rate * quantity;
     frappe.model.set_value(cdt, cdn, 'amount', amount);
+}
+
+function update_pre_discount_amount_as_per_dp(frm) {
+    var total_pre_discount_with_gst = 0;
+    $.each(frm.fields_dict['items'].grid.get_data(), function(i, row) {
+        var gst_slab = parseFloat(row.item_gst_slab) || 0;
+        var gst_multiplier = 1 + (gst_slab / 100);
+        var row_pre_discount = (row.rate || 0) * (row.quantity || 0);
+        total_pre_discount_with_gst += row_pre_discount * gst_multiplier;
+    });
+    frappe.model.set_value(frm.doctype, frm.docname, 'amount_as_per_dp', Math.round(total_pre_discount_with_gst));
+}
+
+function update_total_discount(frm) {
+    var total_discount_with_gst = 0;
+    $.each(frm.fields_dict['items'].grid.get_data(), function(i, row) {
+        total_discount_with_gst += (row.discount || 0) * (row.quantity || 0);
+    });
+    frappe.model.set_value(frm.doctype, frm.docname, 'total_discount', Math.round(total_discount_with_gst));
 }
 
 function update_sub_total(frm) {

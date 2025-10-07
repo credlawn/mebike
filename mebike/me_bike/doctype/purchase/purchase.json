@@ -27,6 +27,8 @@
   "total_quantity",
   "total_weight",
   "column_break_epqx",
+  "amount_as_per_dp",
+  "total_discount",
   "column_break_pjxq",
   "sub_total",
   "total_taxes_and_charges",
@@ -76,14 +78,6 @@
    "fieldname": "total_weight",
    "fieldtype": "Float",
    "label": "Total Weight (In KG)",
-   "precision": "2",
-   "read_only": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "sub_total",
-   "fieldtype": "Currency",
-   "label": "Sub Total",
    "precision": "2",
    "read_only": 1
   },
@@ -202,12 +196,36 @@
   {
    "fieldname": "xyz",
    "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_discount",
+   "fieldtype": "Currency",
+   "label": "Total Discount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "amount_as_per_dp",
+   "fieldtype": "Currency",
+   "label": "Sub Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "sub_total",
+   "fieldtype": "Currency",
+   "label": "Taxable Value",
+   "precision": "2",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-13 15:31:46.425445",
+ "modified": "2025-10-07 17:17:31.336619",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Purchase",
@@ -226,6 +244,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": []

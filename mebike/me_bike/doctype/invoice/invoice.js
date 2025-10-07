@@ -46,5 +46,10 @@ frappe.ui.form.on('Invoice', {
                 $("button[data-label='Download%20Invoice']").removeClass("btn-default").addClass("manns_green_button");
             }, 0);
         }
+    },
+
+    pass_flat_discount: function(frm) {
+        frm.set_value('extra_discount_amount', 0);
+        frm.set_value('extra_discount_per', 0);
     }
 });

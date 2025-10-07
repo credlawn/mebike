@@ -93,15 +93,34 @@ class Invoice(Document):
         self.pincode = partner.pincode
 
     def other_calculation(self):
-        if not self.extra_discount_per:
-            extra_discount = 0
-            taxable_value = self.invoice_amount
-        else:
-            extra_discount = self.invoice_amount * (self.extra_discount_per / 100)
-            taxable_value = self.invoice_amount - extra_discount
+        gst_slab = self.gst_slab or 0
+        gst_divisor = 1 + (gst_slab / 100)
 
-        self.extra_discount = extra_discount
-        self.taxable_amount = taxable_value
+        # Calculate pre-GST and with-GST versions of the extra discount
+        if self.pass_flat_discount == 1:
+            extra_discount_with_gst = self.extra_discount_amount or 0
+            extra_discount_pre_gst = extra_discount_with_gst / gst_divisor
+        else:
+            extra_discount_pre_gst = self.invoice_amount * ((self.extra_discount_per or 0) / 100)
+            extra_discount_with_gst = extra_discount_pre_gst * gst_divisor
+
+        # Taxable amount is reduced by the pre-GST discount value
+        self.taxable_amount = self.invoice_amount - extra_discount_pre_gst
+
+        # Update indicative total_discount (with GST) for display
+        doc_before_save = self.get_doc_before_save()
+        if doc_before_save:
+            # On subsequent saves, reverse calculate base discount from the previous state
+            base_discount = (doc_before_save.total_discount or 0) - (doc_before_save.extra_discount or 0)
+        else:
+            # On first save, the current total_discount (from Purchase) is the base
+            base_discount = self.total_discount or 0
+
+        final_total_discount = base_discount + extra_discount_with_gst
+
+        # Set final values
+        self.extra_discount = extra_discount_with_gst  # Store with-GST value for display and next save
+        self.total_discount = final_total_discount
 
     def calculate_cat_gst(self):
         # Use taxable_amount instead of original invoice_amount

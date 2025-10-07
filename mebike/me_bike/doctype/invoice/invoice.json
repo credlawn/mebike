@@ -21,12 +21,16 @@
   "items",
   "section_break_olzq",
   "billed_quantity",
-  "extra_discount_per",
   "total_weight",
+  "pass_flat_discount",
+  "extra_discount_per",
+  "extra_discount_amount",
+  "gst_slab",
   "column_break_ihcw",
+  "amount_as_per_dp",
+  "total_discount",
   "invoice_amount",
   "extra_discount",
-  "gst_slab",
   "column_break_cnkr",
   "taxable_amount",
   "total_gst_amount",
@@ -97,6 +101,7 @@
   {
    "fieldname": "invoice_amount",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Invoice Amount",
    "precision": "2",
    "read_only": 1
@@ -352,15 +357,17 @@
    "precision": "2"
   },
   {
+   "depends_on": "eval: doc.pass_flat_discount !== 1",
    "fieldname": "extra_discount_per",
    "fieldtype": "Percent",
-   "label": "Extra Discount Per",
-   "precision": "2"
+   "label": "Extra Discount Percentage",
+   "precision": "1"
   },
   {
    "default": "0",
    "fieldname": "extra_discount",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Extra Discount",
    "precision": "2",
    "read_only": 1
@@ -381,13 +388,41 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "total_discount",
+   "fieldtype": "Currency",
+   "label": "Total Discount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "amount_as_per_dp",
+   "fieldtype": "Currency",
+   "label": "Sub Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "pass_flat_discount",
+   "fieldtype": "Check",
+   "label": "Pass Flat Discount"
+  },
+  {
+   "depends_on": "eval: doc.pass_flat_discount == 1",
+   "fieldname": "extra_discount_amount",
+   "fieldtype": "Currency",
+   "label": "Extra Discount Amount",
+   "precision": "0"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-26 13:03:18.163996",
+ "modified": "2025-10-07 18:26:07.309123",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Invoice",
@@ -406,6 +441,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
