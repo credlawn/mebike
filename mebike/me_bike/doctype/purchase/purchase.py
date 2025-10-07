@@ -13,6 +13,32 @@ class Purchase(Document):
         self.set_po_number()
         self.set_partner_name()
         self.set_docstatus()
+        self.recalculate_totals()
+
+    def recalculate_totals(self):
+        total_amount = 0
+        total_gst = 0
+        for item in self.get("items"):
+            gst_slab = float(item.item_gst_slab) if item.item_gst_slab else 0
+            divisor = 1 + (gst_slab / 100)
+            discount_val = item.discount or 0
+            rate = item.rate or 0
+            quantity = item.quantity or 0
+            
+            discounted_rate = rate - (discount_val / divisor)
+            amount = discounted_rate * quantity
+            
+            item.amount = amount
+            
+            total_amount += amount
+            
+            gst_fraction = gst_slab / 100
+            total_gst += amount * gst_fraction
+
+        self.sub_total = total_amount
+        self.total_taxes_and_charges = total_gst
+        self.grand_total = self.sub_total + self.total_taxes_and_charges
+        self.rounded_total = round(self.grand_total)
 
     def before_insert(self):
         self.autoname()

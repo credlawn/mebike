@@ -324,7 +324,7 @@ function fetchItemDetailsAndCalculate(frm, cdt, cdn) {
     var row = locals[cdt][cdn];
 
     if (row.item_code) {
-        frappe.db.get_value('Item', row.item_code, ['partner_price_before_gst', 'item_name', 'partner_gst', 'item_weight', 'hsn_code', 'item_mrp'], function(data) {
+        frappe.db.get_value('Item', row.item_code, ['partner_price_before_gst', 'item_name', 'partner_gst', 'item_weight', 'hsn_code', 'item_mrp', 'tbi_gst_slab'], function(data) {
             // Set item details in the new row
             frappe.model.set_value(cdt, cdn, 'rate', data.partner_price_before_gst);
             frappe.model.set_value(cdt, cdn, 'item_name', data.item_name);
@@ -332,6 +332,7 @@ function fetchItemDetailsAndCalculate(frm, cdt, cdn) {
             frappe.model.set_value(cdt, cdn, 'item_weight', data.item_weight);
             frappe.model.set_value(cdt, cdn, 'hsn_code', data.hsn_code);
             frappe.model.set_value(cdt, cdn, 'item_mrp', data.item_mrp);
+            frappe.model.set_value(cdt, cdn, 'item_gst_slab', data.tbi_gst_slab);
 
             // Trigger calculations for the new row
             update_amount(cdt, cdn);
@@ -353,6 +354,7 @@ function fetchItemDetailsAndCalculate(frm, cdt, cdn) {
         frappe.model.set_value(cdt, cdn, 'item_weight', 0);
         frappe.model.set_value(cdt, cdn, 'hsn_code', 0);
         frappe.model.set_value(cdt, cdn, 'item_mrp', 0);
+        frappe.model.set_value(cdt, cdn, 'item_gst_slab', 0);
     }
 
     if (!row.quantity) {
@@ -391,12 +393,34 @@ frappe.ui.form.on('Items', {
         update_total_weight(frm);
         update_grand_total(frm);
         update_rounded_total(frm);
+    },
+
+    discount: function(frm, cdt, cdn) {
+        update_amount(cdt, cdn);
+        update_sub_total(frm);
+        update_partner_gst(frm);
+        update_grand_total(frm);
+        update_rounded_total(frm);
+    },
+
+    item_gst_slab: function(frm, cdt, cdn) {
+        update_amount(cdt, cdn);
+        update_sub_total(frm);
+        update_partner_gst(frm);
+        update_grand_total(frm);
+        update_rounded_total(frm);
     }
 });
 
 function update_amount(cdt, cdn) {
     var row = locals[cdt][cdn];
-    var amount = row.rate * row.quantity;
+    var gst_slab = parseFloat(row.item_gst_slab) || 0;
+    var divisor = 1 + (gst_slab / 100);
+    var discount_val = row.discount || 0;
+    var rate = row.rate || 0;
+    var quantity = row.quantity || 0;
+    var discounted_rate = rate - (discount_val / divisor);
+    var amount = discounted_rate * quantity;
     frappe.model.set_value(cdt, cdn, 'amount', amount);
 }
 
@@ -427,7 +451,10 @@ function update_total_weight(frm) {
 function update_partner_gst(frm) {
     var total_gst = 0;
     $.each(frm.fields_dict['items'].grid.get_data(), function(i, row) {
-        total_gst += (row.item_gst || 0) * (row.quantity || 0);
+        var gst_slab = parseFloat(row.item_gst_slab) || 0;
+        var gst_fraction = gst_slab / 100;
+        var row_amount = row.amount || 0;
+        total_gst += row_amount * gst_fraction;
     });
     frappe.model.set_value(frm.doctype, frm.docname, 'total_taxes_and_charges', total_gst);
 }
