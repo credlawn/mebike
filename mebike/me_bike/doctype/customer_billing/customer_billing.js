@@ -94,7 +94,7 @@ function updatePricing(frm) {
     if (!frm.doc.select_item) {
         const fields_to_zero = [
             'sub_total', 'mrp', 'taxable_value', 'taxes_and_charges', 'grand_total',
-            'rounded_total', 'total_saving', 'discount'
+            'rounded_total', 'total_saving', 'discount', 'weight', 'gst_slab'
         ];
         fields_to_zero.forEach(f => frm.set_value(f, 0));
         return;
