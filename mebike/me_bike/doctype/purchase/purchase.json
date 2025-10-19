@@ -29,6 +29,7 @@
   "column_break_epqx",
   "amount_as_per_dp",
   "total_discount",
+  "pre_discount_taxable_value",
   "column_break_pjxq",
   "sub_total",
   "total_taxes_and_charges",
@@ -220,12 +221,20 @@
    "label": "Taxable Value",
    "precision": "2",
    "read_only": 1
+  },
+  {
+   "fieldname": "pre_discount_taxable_value",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Pre Discount Taxable Value",
+   "precision": "2",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-07 17:17:31.336619",
+ "modified": "2025-10-08 16:31:58.655363",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Purchase",
@@ -244,7 +253,6 @@
    "write": 1
   }
  ],
- "row_format": "Dynamic",
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": []

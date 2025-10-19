@@ -172,46 +172,54 @@ class CustomerBilling(Document):
             )
 
             if item_serial:
+                self.default_mrp = item_serial.item_mrp or 0
+                if self.selling_price and self.selling_price < self.default_mrp:
+                    frappe.throw("Selling Price Can not be less than On Road Price. Use Discount Instead.")
+
                 self.item_name = item_serial.item_name or ''
                 self.item_color = item_serial.item_color or ''
                 self.model_name = item_serial.model or ''
                 self.item_type = item_serial.item_sub_category or ''
                 self.quantity = float(self.quantity or 1)
-
                 self.weight = (item_serial.item_weight or 0) * self.quantity
-                self.sub_total = (item_serial.customer_price_pre_gst or 0) * self.quantity
                 self.gst_slab = item_serial.tbi_gst_slab or 0
-                self.mrp = item_serial.item_mrp or 0
+                
+                default_sub_total_per_unit = item_serial.customer_price_pre_gst or 0
 
-                sub_total = float(self.sub_total or 0)
+                base_price_per_unit = default_sub_total_per_unit
+                if self.selling_price and self.selling_price > 0:
+                    gst_divisor = 1 + (float(self.gst_slab) / 100)
+                    base_price_per_unit = float(self.selling_price) / gst_divisor
+                
+                total_base_price = base_price_per_unit * self.quantity
+
                 discount = 0
-                gst_multiplier = 1 + (float(self.gst_slab or 0) / 100)
-
                 if self.discount_type == "Percentage":
-                    if float(self.discount_per or 0) < 1:
-                        frappe.throw("Discount must be minimum 1%")
-                    base_discount = (sub_total * float(self.discount_per or 0)) / 100
-                    discount = base_discount
+                    if float(self.discount_per or 0) > 0:
+                        discount = (total_base_price * float(self.discount_per)) / 100
                 elif self.discount_type == "Fixed Amount":
-                    if float(self.discount_amount or 0) < 10:
-                        frappe.throw("Discount must be minimum ₹10")
-                    discount = float(self.discount_amount or 0) / gst_multiplier
-
-                self.discount = discount
-
-                gst_slab = float(self.gst_slab or 0)
-                taxable_value = sub_total - discount
-                taxes_and_charges = (taxable_value * gst_slab) / 100
+                    if float(self.discount_amount or 0) > 0:
+                        gst_divisor = 1 + (float(self.gst_slab) / 100)
+                        discount = float(self.discount_amount) / gst_divisor
+                
+                taxable_value = total_base_price - discount
+                taxes_and_charges = taxable_value * (float(self.gst_slab) / 100)
                 grand_total = taxable_value + taxes_and_charges
                 rounded_total = round(grand_total)
-                total_saving = (float(self.mrp) * self.quantity) - rounded_total
 
+                mrp_for_saving = (self.selling_price or self.default_mrp) * self.quantity
+                total_saving = mrp_for_saving - rounded_total
+
+                self.rate = base_price_per_unit
+                self.sub_total = total_base_price
+                self.discount = discount
                 self.taxable_value = taxable_value
                 self.taxes_and_charges = taxes_and_charges
                 self.grand_total = grand_total
                 self.rounded_total = rounded_total
+                self.mrp = self.selling_price or self.default_mrp
                 self.total_saving = total_saving
-
+                
                 self.igst = taxes_and_charges
                 self.sgst = taxes_and_charges / 2
                 self.cgst = taxes_and_charges / 2

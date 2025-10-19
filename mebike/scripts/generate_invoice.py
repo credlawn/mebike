@@ -17,6 +17,7 @@ def create_invoice_from_purchase(purchase_doc_name):
     invoice_doc.total_weight = purchase_doc.total_weight
     invoice_doc.amount_as_per_dp = purchase_doc.amount_as_per_dp
     invoice_doc.total_discount = purchase_doc.total_discount
+    invoice_doc.pre_discount_taxable_value = purchase_doc.pre_discount_taxable_value
     
     # Add items from the purchase document to the invoice
     for item in purchase_doc.items:
@@ -32,6 +33,8 @@ def create_invoice_from_purchase(purchase_doc_name):
         invoice_item.hsn_code = item.hsn_code
         invoice_item.item_gst_slab = item.item_gst_slab
         invoice_item.discount = item.discount
+        invoice_item.non_discounted_amount = item.non_discounted_amount
+        
 
     # Insert the invoice into the database
     invoice_doc.insert()  

@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-09 11:15:23.018339",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "party_details_section",
+  "invoice_date",
+  "column_break_orir",
+  "party_name",
+  "column_break_nego",
+  "total_bill_amount",
+  "column_break_iwkd",
+  "gst_amount",
+  "attach_bill_section",
+  "attach_ptbv",
+  "column_break_bobl"
+ ],
+ "fields": [
+  {
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Invoice Date"
+  },
+  {
+   "fieldname": "column_break_orir",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "party_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Party Name"
+  },
+  {
+   "fieldname": "column_break_nego",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_bill_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Total Bill Amount",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_iwkd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gst_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "GST Amount",
+   "precision": "2"
+  },
+  {
+   "fieldname": "party_details_section",
+   "fieldtype": "Section Break",
+   "label": "Party Details"
+  },
+  {
+   "fieldname": "attach_bill_section",
+   "fieldtype": "Section Break",
+   "label": "Attach Bill"
+  },
+  {
+   "fieldname": "attach_ptbv",
+   "fieldtype": "Attach"
+  },
+  {
+   "fieldname": "column_break_bobl",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-09 11:27:32.306600",
+ "modified_by": "Administrator",
+ "module": "Me Bike",
+ "name": "Manns Purchase Bill",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

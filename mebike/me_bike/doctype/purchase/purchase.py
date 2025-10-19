@@ -20,6 +20,8 @@ class Purchase(Document):
         total_discount_with_gst = 0
         total_amount = 0
         total_gst = 0
+        pre_discount_taxable_value = 0
+
         for item in self.get("items"):
             gst_slab = float(item.item_gst_slab) if item.item_gst_slab else 0
             divisor = 1 + (gst_slab / 100)
@@ -27,7 +29,11 @@ class Purchase(Document):
             rate = item.rate or 0
             quantity = item.quantity or 0
 
+            
             row_pre_discount = rate * quantity
+            item.non_discounted_amount = row_pre_discount
+            pre_discount_taxable_value += row_pre_discount
+
             row_pre_discount_with_gst = row_pre_discount * divisor
             total_pre_discount_with_gst += row_pre_discount_with_gst
 
@@ -41,6 +47,7 @@ class Purchase(Document):
             gst_fraction = gst_slab / 100
             total_gst += amount * gst_fraction
 
+        self.pre_discount_taxable_value = pre_discount_taxable_value
         self.amount_as_per_dp = round(total_pre_discount_with_gst)
         self.total_discount = round(total_discount_with_gst)
         self.sub_total = total_amount

@@ -16,12 +16,9 @@
   "customer_name",
   "city",
   "pincode",
-  "discount_type",
   "column_break_huyu",
   "mobile_no",
   "state",
-  "discount_per",
-  "discount_amount",
   "column_break_tunt",
   "email",
   "address",
@@ -51,8 +48,16 @@
   "model_name",
   "column_break_pgbe",
   "item_type",
-  "e",
+  "section_break_losz",
+  "selling_price",
+  "column_break_hmno",
   "quantity",
+  "column_break_yqjo",
+  "discount_type",
+  "column_break_glgs",
+  "discount_amount",
+  "discount_per",
+  "e",
   "weight",
   "gst_slab",
   "igst",
@@ -65,11 +70,14 @@
   "discount",
   "sub_total",
   "total_saving",
+  "default_mrp",
+  "default_sub_total",
   "column_break_utgm",
   "taxable_value",
   "taxes_and_charges",
   "grand_total",
-  "rounded_total"
+  "rounded_total",
+  "rate"
  ],
  "fields": [
   {
@@ -190,7 +198,7 @@
    "fieldname": "filter_by_sub_category",
    "fieldtype": "Select",
    "label": "Filter by Category",
-   "options": "\nScooter\nBike\nCharger\nMotor\nBattery\nController\nDisplay"
+   "options": "\nScooter\nBike\nCharger\nMotor\nBattery\nController\nDisplay\nAccessories"
   },
   {
    "fieldname": "abc",
@@ -314,10 +322,12 @@
   },
   {
    "default": "1",
+   "depends_on": "eval: !doc.__islocal && doc.select_item",
    "fieldname": "quantity",
    "fieldtype": "Int",
    "label": "Quantity",
-   "mandatory_depends_on": "eval: doc.select_item"
+   "mandatory_depends_on": "eval: doc.select_item",
+   "read_only_depends_on": "eval: !doc.select_item"
   },
   {
    "default": "0",
@@ -328,11 +338,12 @@
    "read_only": 1
   },
   {
+   "default": "No Discount",
+   "depends_on": "eval: !doc.__islocal && doc.select_item",
    "fieldname": "discount_type",
    "fieldtype": "Select",
    "label": "Discount Type (If Offered)",
-   "options": "\nNo Discount\nPercentage\nFixed Amount",
-   "reqd": 1
+   "options": "No Discount\nPercentage\nFixed Amount"
   },
   {
    "depends_on": "eval: doc.discount_type == \"Fixed Amount\"",
@@ -385,7 +396,7 @@
   {
    "fieldname": "mrp",
    "fieldtype": "Currency",
-   "label": "MRP",
+   "label": "On Road Price",
    "precision": "2",
    "read_only": 1
   },
@@ -414,6 +425,8 @@
    "read_only": 1
   },
   {
+   "collapsible": 1,
+   "collapsible_depends_on": "eval: doc.__islocal",
    "fieldname": "a",
    "fieldtype": "Section Break",
    "label": "Customer Details"
@@ -469,13 +482,60 @@
    "hidden": 1,
    "label": "Customer ID",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_losz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_hmno",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_yqjo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_glgs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval: !doc.__islocal && doc.select_item",
+   "fieldname": "selling_price",
+   "fieldtype": "Currency",
+   "label": "Selling Price",
+   "precision": "0"
+  },
+  {
+   "fieldname": "default_mrp",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Default MRP",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "default_sub_total",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Default Sub Total",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Rate",
+   "precision": "2",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-31 17:45:16.549229",
+ "modified": "2025-10-18 13:27:19.513435",
  "modified_by": "Administrator",
  "module": "Me Bike",
  "name": "Customer Billing",
